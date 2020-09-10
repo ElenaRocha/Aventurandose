@@ -17,9 +17,22 @@ app.use("/rutas", trailsRouter);
 app.use("/usuarios", usersRouter);
 
 /*app.use((err, req, res, next) => {
-  if (res.headersSent) return next(err);
-  res.status(400).json({ err: err });
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render("error", { error: err });
 });*/
+
+/*app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});*/
+
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render("error", { error: err });
+}
 
 app.listen(process.env.PORT, () =>
   console.log("Running on port ", process.env.PORT)

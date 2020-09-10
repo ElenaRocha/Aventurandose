@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 //const fs = require("fs");
 
 const Trail = require("../models/trailModel.js");
+const User = require("../models/userModel.js");
 const Cathegory = require("../models/cathegoryModel.js");
 const Tag = require("../models/tagModel.js");
 const Comment = require("../models/commentModel.js");
 
-//const multer = require('multer');
+//const multer = require("multer");
 
 //const app = express();
 
@@ -33,58 +34,67 @@ mongoose.set("useFindAndModify", false);
 const trailController = {
   getAllTrails: async function (req, res) {
     try {
-      const trailCollection = await Trail.find();
+      const trailCollection = await Trail.find()
+        .populate("cathegories")
+        .populate("tags")
+        .populate("comments");
       res.status(200).json({ ...trailCollection });
     } catch (err) {
-      console.log(err);
+      res.send("Error al obtener datos");
     }
   },
 
   getAllTags: async function (req, res) {
     try {
-      const trailCollection = await Tag.find();
+      const trailCollection = await Tag.find().populate("trails");
       res.status(200).json({ ...trailCollection });
     } catch (err) {
-      console.log(err);
+      res.send("Error al obtener datos");
     }
   },
 
   getAllCathegories: async function (req, res) {
     try {
-      const trailCollection = await Cathegory.find();
+      const trailCollection = await Cathegory.find().populate("trails");
       res.status(200).json({ ...trailCollection });
     } catch (err) {
-      console.log(err);
+      res.send("Error al obtener datos");
     }
   },
 
   getTrailByCathegory: async function (req, res) {
     try {
       const getCathegory = req.params.cathegory;
-      const getTrail = await Trail.find({ cathegories: getCathegory });
+      const getTrail = await Trail.find({ cathegories: getCathegory })
+        .populate("cathegories")
+        .populate("tags")
+        .populate("comments");
       res.status(200).json(getTrail);
     } catch (err) {
-      console.log(err);
+      res.send("Error al obtener datos");
     }
   },
 
   getTrailByTag: async function (req, res) {
     try {
       const getTag = req.params.tag;
-      const getTrail = await Trail.find({ tags: getTag });
+      const getTrail = await Trail.find({ tags: getTag })
+        .populate("cathegories")
+        .populate("tags")
+        .populate("comments");
       res.status(200).json(getTrail);
     } catch (err) {
-      console.log(err);
+      res.send("Error al obtener datos");
     }
   },
 
   registerTrail: function (req, res) {
-    /*if (req.email !== "elenarocha@gmail.com") {
+    if (req.email !== "elenarocha@gmail.com") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
-    }*/
+    }
 
     const trailInfo = req.body;
 
@@ -101,82 +111,136 @@ const trailController = {
     trail.cathegories = trailInfo.cathegory;
 
     trail.save((err, savedInfo) => {
-      if (err) throw new Error("Ha habiado un error al registrar la ruta", err);
+      if (err) throw new Error("Error al registrar la ruta", err);
 
       res.status(200).json({
         message: "Ruta guardada correctamente",
-        trailInfo: savedInfo,
+        savedInfo,
       });
     });
   },
 
   updateTrail: async function (req, res) {
-    /*if (req.email !== "elenarocha@gmail.com") {
+    if (req.email !== "elenarocha@gmail.com") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
-    }*/
+    }
 
     const newTrailInfo = req.body;
     const trailId = req.params.id;
 
-    const trailUpdated = await Trail.findByIdAndUpdate(trailId, {
-      name: newTrailInfo.name,
-      description: newTrailInfo.description,
-      time: newTrailInfo.time,
-      length: newTrailInfo.length,
-      slope: newTrailInfo.slope,
-      circular: newTrailInfo.circular,
-      province: newTrailInfo.province,
-      location: newTrailInfo.location,
-      trasnport: newTrailInfo.transport,
-      cathegories: newTrailInfo.cathegory,
-    });
+    Trail.findByIdAndUpdate(
+      trailId,
+      {
+        name: newTrailInfo.name,
+        description: newTrailInfo.description,
+        time: newTrailInfo.time,
+        length: newTrailInfo.length,
+        slope: newTrailInfo.slope,
+        circular: newTrailInfo.circular,
+        province: newTrailInfo.province,
+        location: newTrailInfo.location,
+        trasnport: newTrailInfo.transport,
+        cathegories: newTrailInfo.cathegory,
+      },
+      { new: true },
+      (err, savedInfo) => {
+        if (err) throw new Error("Error al actualizar la ficha de ruta", err);
 
-    trailUpdated.save((err, savedInfo) => {
-      if (err) throw new Error("Ha habido un error al actualizar la ruta", err);
-
-      res.status(200).json({
-        message: "Se ha actualizado la ruta",
-        newTrailInfo: savedInfo,
-      });
-    });
-  },
+        res.status(200).json({
+          message: "Ruta actualizada correctamente",
+          savedInfo,
+        });
+      }
+    );
+  }, //si dejas campos sin enviar, se resetean a null
 
   deleteTrail: async function (req, res) {
-    /*if (req.email !== "elenarocha@gmail.com") {
+    if (req.email !== "elenarocha@gmail.com") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
-    }*/
+    }
 
     const trailId = req.params.id;
-    const trailDeleted = await Trail.findByIdAndDelete(trailId);
-    res.status(200).json({ message: "Ruta aliminada" });
+    Trail.findByIdAndDelete(trailId, (err, savedInfo) => {
+      if (err) throw new Error("Error al eliminar ruta", err);
+
+      res.status(200).json({
+        message: "Ruta eliminada correctamente",
+        savedInfo,
+      });
+    });
   },
+
+  addCathegory: async function (req, res) {
+    if (req.email !== "elenarocha@gmail.com") {
+      res.status(401).json({
+        message: "No tiene permiso para realizar esta acción",
+      });
+      return;
+    }
+
+    const trailId = req.params.trail_id;
+    const cathegoryId = req.params.cathegory_id;
+
+    Trail.findByIdAndUpdate(
+      trailId,
+      {
+        $push: { cathegories: cathegoryId },
+      },
+      (err, response, savedInfo) => {
+        if (err) throw new Error("Error al asignar categoría", err);
+
+        Cathegory.findByIdAndUpdate(
+          cathegoryId,
+          {
+            $push: { trails: trailId },
+          },
+          (err, resp2) => {
+            if (err) throw new Error("Error al guardar categoría", err);
+
+            res.status(200).json({
+              message: "Categoría guardada correctamente",
+              savedInfo,
+            });
+          }
+        );
+      }
+    );
+  }, //limitar el número  de etiquetas y catewgorías por ruta, y asegurarse de que no se repiten
 
   addTag: async function (req, res) {
     const trailId = req.params.trail_id;
     const tagId = req.params.tag_id;
 
-    const tagAdded = await Trail.findByIdAndUpdate(trailId, {
-      $push: { tags: tagId },
-    });
+    Trail.findByIdAndUpdate(
+      trailId,
+      {
+        $push: { tags: tagId },
+      },
+      (err, response, savedInfo) => {
+        if (err) throw new Error("Error al asignar etiqueta", err);
 
-    /*const trailAdded = await Tag.findByIdAndUpdate(tagId, {
-      $push: { trails: trailId },
-    });*/
+        Tag.findByIdAndUpdate(
+          tagId,
+          {
+            $push: { trails: trailId },
+          },
+          (err, resp2) => {
+            if (err) throw new Error("Error al guardar la etiqueta", err);
 
-    tagAdded.save((err, savedInfo) => {
-      if (err) throw new Error("Ha habiado un error al registrar la ruta", err);
-
-      res.status(200).json({
-        message: "Ruta guardada correctamente",
-        tagId: savedInfo,
-      });
-    });
+            res.status(200).json({
+              message: "Etiqueta guardada correctamente",
+              savedInfo,
+            });
+          }
+        );
+      }
+    );
   },
 
   addComment: async function (req, res) {
@@ -190,13 +254,29 @@ const trailController = {
     comment.trail = trailId;
     comment.user = userId;
 
-    comment.save((err, savedInfo) => {
-      if (err) throw new Error("Ha habiado un error al registrar la ruta", err);
+    comment.save((err, response, savedInfo) => {
+      if (err) throw new Error("Error al publicar el comentario", err);
 
-      res.status(200).json({
-        message: "Ruta guardada correctamente",
-        newComment: savedInfo,
-      });
+      Trail.findByIdAndUpdate(
+        trailId,
+        { $push: { comments: response._id } },
+        (err, resp2) => {
+          if (err) throw new Error("Error al guardar el comentario", err);
+        }
+      );
+
+      User.findByIdAndUpdate(
+        userId,
+        { $push: { comments: response._id } },
+        (err, resp3) => {
+          if (err) throw new Error("Error al guardar el comentario", err);
+
+          res.status(200).json({
+            message: "Comentario publicado correctamente",
+            savedInfo,
+          });
+        }
+      );
     });
   },
 };

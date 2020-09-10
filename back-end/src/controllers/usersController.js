@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/userModel.js");
@@ -38,7 +39,7 @@ const usersController = {
 
       res.status(200).json({
         message: "Se ha resgistrado correctamente",
-        userInfo: savedInfo,
+        savedInfo,
       });
     });
   },
@@ -50,40 +51,50 @@ const usersController = {
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(newUserInfo.password, salt);
 
-    const userUpdated = await User.findByIdAndUpdate(userId, {
-      name: newUserInfo.name,
-      surname: newUserInfo.surname,
-      alias: newUserInfo.alias,
-      email: newUserInfo.email,
-      password: encryptedPassword,
-    });
+    User.findByIdAndUpdate(
+      userId,
+      {
+        name: newUserInfo.name,
+        surname: newUserInfo.surname,
+        alias: newUserInfo.alias,
+        email: newUserInfo.email,
+        password: encryptedPassword,
+      },
+      { new: true },
+      (err, savedInfo) => {
+        if (err)
+          throw new Error(
+            "Ha habido un error al actualizar los datos del usuario",
+            err
+          );
 
-    userUpdated.save((err, savedInfo) => {
-      if (err)
-        throw new Error(
-          "Ha habido un error al actualizar los datos del usuario",
-          err
-        );
-
-      res.status(200).json({
-        message: "Usuario actualizado correctamente",
-        newUserInfo: savedInfo,
-      });
-    });
+        res.status(200).json({
+          message: "Usuario actualizado correctamente",
+          response: savedInfo,
+        });
+      }
+    );
   },
 
   unsuscribe: async function (req, res) {
     const userId = req.params.id;
-    const userUnsuscribed = await User.findByIdAndDelete(userId);
-    res.status(200).json({
-      message: "El usuario se ha dado de baja",
-    });
+    const userUnsuscribed = await User.findByIdAndDelete(
+      userId,
+      (err, savedInfo) => {
+        if (err) throw new Error("Ha habido un error al darse de baja", err);
+
+        res.status(200).json({
+          message: "Usuario dado de baja correctamente",
+          savedInfo,
+        });
+      }
+    );
   },
 
   userLogin: async function (req, res) {
     const userInfo = req.body;
 
-    const userData = await User.findOne({ email: userInfo.email }).exec();
+    const userData = await User.findOne({ email: userInfo.email });
 
     if (!userData) {
       res.status(401).json({
@@ -91,21 +102,27 @@ const usersController = {
       });
       return;
     }
+
     const passwordIsCorrect = await bcrypt.compare(
-      password,
-      userData[0].password
+      userInfo.password,
+      userData.password
     );
+
     if (!passwordIsCorrect) {
       res.status(401).json({
         message: "Usuario o contraseña incorrectos",
       });
       return;
     }
-    const token = jwt.sign({ email }, secret, { expiresIn: "1d" });
+
+    const token = jwt.sign({ email: userData.email }, secret, {
+      expiresIn: 60 * 60 * 24,
+    });
+
     res.status(200).json({
       message: "Login correcto",
       token,
-      email,
+      //email,
     });
   },
 };

@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const trailsController = require("../controllers/trailsController.js");
 
 const secret = process.env.SECRET;
@@ -22,10 +23,23 @@ function authenticate(req, res, next) {
 router.get("/listado", trailsController.getAllTrails);
 router.get("/listado/:cathegory", trailsController.getTrailByCathegory);
 router.get("/listado/:tag", trailsController.getTrailByTag);
-router.post("/formulario", trailsController.registerTrail);
-router.put("/formulario/:id", trailsController.updateTrail);
-router.delete("/formulario/:id", trailsController.deleteTrail);
-router.post("/etiquetar/:trail_id/:tag_id", trailsController.addTag);
-router.post("/comentar/:trail_id/:user_id", trailsController.addComment);
+router.post("/formulario", authenticate, trailsController.registerTrail);
+router.put("/formulario/:id", authenticate, trailsController.updateTrail);
+router.delete("/formulario/:id", authenticate, trailsController.deleteTrail);
+router.post(
+  "/categorizar/:trail_id/:cathegory_id",
+  authenticate,
+  trailsController.addCathegory
+);
+router.post(
+  "/etiquetar/:trail_id/:tag_id",
+  authenticate,
+  trailsController.addTag
+);
+router.post(
+  "/comentar/:trail_id/:user_id",
+  authenticate,
+  trailsController.addComment
+);
 
 module.exports = router;
