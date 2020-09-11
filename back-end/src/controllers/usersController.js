@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/userModel.js");
+const theWeather = require("../services/apiWeather.js");
 
 mongoose.set("useFindAndModify", false);
 
@@ -20,6 +21,21 @@ mongoose.connection.on("error", (err) => {
 });
 
 const usersController = {
+  getWeather: async function (req, res) {
+    const lat = req.params.lat;
+    const lon = req.params.lon;
+
+    theWeather.getWeather(lat, lon, (err, info) => {
+      if (err)
+        throw new Error("Ha habido un error al obtener información", err);
+
+      res.status(200).json({
+        message: "Información obtenida correctamente",
+        info,
+      });
+    });
+  },
+
   createUser: async function (req, res) {
     const userInfo = req.body;
 
@@ -122,7 +138,6 @@ const usersController = {
     res.status(200).json({
       message: "Login correcto",
       token,
-      //email,
     });
   },
 };

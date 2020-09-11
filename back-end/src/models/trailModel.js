@@ -10,7 +10,7 @@ const trailSchema = new Schema({
   slope: Number,
   circular: Boolean,
   province: String,
-  location: { type: String, coordinates: [Number] },
+  location: { 0: String, 1: [Number] }, //GPS
   trasnport: String,
   cathegories: [{ type: Schema.Types.ObjectId, ref: "Cathegory" }],
   tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],

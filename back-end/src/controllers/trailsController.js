@@ -7,6 +7,7 @@ const User = require("../models/userModel.js");
 const Cathegory = require("../models/cathegoryModel.js");
 const Tag = require("../models/tagModel.js");
 const Comment = require("../models/commentModel.js");
+const theWeather = require("../services/apiWeather.js");
 
 //const multer = require("multer");
 
@@ -65,10 +66,19 @@ const trailController = {
   getTrailByCathegory: async function (req, res) {
     try {
       const getCathegory = req.params.cathegory;
+
       const getTrail = await Trail.find({ cathegories: getCathegory })
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
+
+      const lat = await getTrail[0].location[1][0];
+      const lon = await getTrail[0].location[1][1];
+
+      console.log("lat: ", lat, " lon: ", lon);
+
+      //await theWeather.getWeather(lat, lon);
+
       res.status(200).json(getTrail);
     } catch (err) {
       res.send("Error al obtener datos");
