@@ -20,7 +20,7 @@ function authenticate(req, res, next) {
   next();
 }
 
-router.get("/el-tiempo/:lat-:lon", usersController.getWeather);
+router.get("/el-tiempo/:lat/:lon", usersController.getWeather);
 router.post("/darse-de-alta", usersController.createUser);
 router.put("/modificar-perfil/:id", authenticate, usersController.updateUser);
 router.delete("/darse-de-baja/:id", authenticate, usersController.unsuscribe);

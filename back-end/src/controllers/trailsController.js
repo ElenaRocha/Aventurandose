@@ -71,14 +71,6 @@ const trailController = {
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
-
-      const lat = await getTrail[0].location[1][0];
-      const lon = await getTrail[0].location[1][1];
-
-      console.log("lat: ", lat, " lon: ", lon);
-
-      //await theWeather.getWeather(lat, lon);
-
       res.status(200).json(getTrail);
     } catch (err) {
       res.send("Error al obtener datos");
@@ -92,6 +84,28 @@ const trailController = {
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
+      res.status(200).json(getTrail);
+    } catch (err) {
+      res.send("Error al obtener datos");
+    }
+  },
+
+  getTrailById: async function (req, res) {
+    try {
+      const getId = req.params.id;
+
+      const getTrail = await Trail.findById(getId)
+        .populate("cathegories")
+        .populate("tags")
+        .populate("comments");
+
+      const lat = await getTrail.location[0];
+      const lon = await getTrail.location[1];
+
+      const weather = await theWeather.getWeather(lat, lon);
+
+      console.log("weather", weather);
+
       res.status(200).json(getTrail);
     } catch (err) {
       res.send("Error al obtener datos");

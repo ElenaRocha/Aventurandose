@@ -21,8 +21,12 @@ function authenticate(req, res, next) {
 }
 
 router.get("/listado", trailsController.getAllTrails);
-router.get("/listado/:cathegory", trailsController.getTrailByCathegory);
-router.get("/listado/:tag", trailsController.getTrailByTag);
+router.get(
+  "/listado/categorías/:cathegory",
+  trailsController.getTrailByCathegory
+);
+router.get("/listado/etiquetas/:tag", trailsController.getTrailByTag);
+router.get("/listado/ruta/:id", trailsController.getTrailById);
 router.post("/formulario", authenticate, trailsController.registerTrail);
 router.put("/formulario/:id", authenticate, trailsController.updateTrail);
 router.delete("/formulario/:id", authenticate, trailsController.deleteTrail);

@@ -3,14 +3,15 @@ const Schema = mongoose.Schema;
 
 const trailSchema = new Schema({
   name: String,
-  img: Buffer,
+  //img: Buffer,
   description: String,
   time: Number,
   length: Number,
   slope: Number,
   circular: Boolean,
   province: String,
-  location: { 0: String, 1: [Number] }, //GPS
+  //location: { 0: String, 1: [Number] },
+  location: [String], //GPS
   trasnport: String,
   cathegories: [{ type: Schema.Types.ObjectId, ref: "Cathegory" }],
   tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],

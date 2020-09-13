@@ -7,7 +7,7 @@ var weather = {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((json) => {
-        res.send(json);
+        return json;
       })
       .catch((err) => new Error("Error en la petición a la API", err));
   },
