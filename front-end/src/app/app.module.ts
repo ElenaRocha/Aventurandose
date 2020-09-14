@@ -1,36 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppWeatherComponent } from './components/app-weather/app-weather.component';
-import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { AllTrailsComponent } from './components/all-trails/all-trails.component';
+import { FilteredTrailsComponent } from './components/filtered-trails/filtered-trails.component';
+import { TrailViewComponent } from './components/trail-view/trail-view.component';
 import { TrailFormComponent } from './components/trail-form/trail-form.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { CommentAndTagComponent } from './components/comment-and-tag/comment-and-tag.component';
-import { TrailViewComponent } from './components/trail-view/trail-view.component';
-import { AllTrailsComponent } from './components/all-trails/all-trails.component';
-import { FilteredTrailsComponent } from './components/filtered-trails/filtered-trails.component';
-import { ErrorComponent } from './components/error/error.component';
+import { ApiWeatherComponent } from './components/api-weather/api-weather.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppWeatherComponent,
-    GoogleMapsComponent,
+    AllTrailsComponent,
+    FilteredTrailsComponent,
+    TrailViewComponent,
     TrailFormComponent,
     UserFormComponent,
     CommentAndTagComponent,
-    TrailViewComponent,
-    AllTrailsComponent,
-    FilteredTrailsComponent,
-    ErrorComponent
+    ApiWeatherComponent,
+    GoogleMapsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

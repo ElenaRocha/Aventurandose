@@ -1,16 +1,15 @@
 const fetch = require("node-fetch");
 
-var weather = {
-  getWeather: async function (lat, lon) {
+var weather = async function (lat, lon) {
+  try {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}&units=metric`;
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((json) => {
-        return json;
-      })
-      .catch((err) => new Error("Error en la petición a la API", err));
-  },
+    const rawWeather = await fetch(apiUrl);
+    const weather = rawWeather.json();
+    return weather;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = weather;

@@ -7,7 +7,7 @@ const User = require("../models/userModel.js");
 const Cathegory = require("../models/cathegoryModel.js");
 const Tag = require("../models/tagModel.js");
 const Comment = require("../models/commentModel.js");
-const theWeather = require("../services/apiWeather.js");
+const getWeather = require("../services/apiWeather.js");
 
 //const multer = require("multer");
 
@@ -102,11 +102,12 @@ const trailController = {
       const lat = await getTrail.location[0];
       const lon = await getTrail.location[1];
 
-      const weather = await theWeather.getWeather(lat, lon);
+      const weather = await getWeather(lat, lon);
 
-      console.log("weather", weather);
-
-      res.status(200).json(getTrail);
+      res.status(200).json({
+        ...getTrail,
+        weather,
+      });
     } catch (err) {
       res.send("Error al obtener datos");
     }

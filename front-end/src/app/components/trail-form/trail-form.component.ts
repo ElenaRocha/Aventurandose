@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TrailsService } from 'src/app/services/trails.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-trail-form',
@@ -7,21 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./trail-form.component.css'],
 })
 export class TrailFormComponent implements OnInit {
-  form: FormGroup;
-  constructor() {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      time: new FormControl('', [Validators.required]),
-      length: new FormControl('', [Validators.required]),
-      slope: new FormControl('', [Validators.required]),
-      //circular
-      province: new FormControl('', [Validators.required]),
-      //coordenadas
-      transport: new FormControl('', [Validators.required]),
-      //categorías
-    });
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

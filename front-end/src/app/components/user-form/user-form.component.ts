@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -7,27 +8,41 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements OnInit {
-  form: FormGroup;
+  updatedUser: any;
+  deletedUser: any;
 
-  constructor() {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      surname: new FormControl('', [Validators.required]),
-      alias: new FormControl('', [Validators.required]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(
-          /^((([!#$%&'*+\-/=?^_`{|}~\w])|([!#$%&'*+\-/=?^_`{|}~\w][!#$%&'*+\-/=?^_`{|}~\.\w]{0,}[!#$%&'*+\-/=?^_`{|}~\w]))[@]\w+([-.]\w+)*\.\w+([-.]\w+)*)$/
-        ),
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.pattern(
-          /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/
-        ),
-      ]),
-    });
+  constructor(
+    private usersService: UsersService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.updatedUser = {};
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(async (params) => {
+      const idUser = params.iduser;
+      this.updatedUser = await this.usersService.getUserById(idUser); // método para obtener usuario por id
+      console.log(this.updatedUser);
+    });
+
+    this.activatedRoute.params.subscribe(async (params) => {
+      const idUser = params.iduser;
+      this.deletedUser = await this.usersService.unsuscribe(idUser);
+    }); //????????
+  }
+
+  async createUser(pUser) {
+    const newUser = await this.usersService.createUser(pUser);
+
+    console.log(newUser);
+    // en situaciones normales enrutariamos al listado this.router.navigate
+  }
+
+  async updateUser(pUser): Promise<any> {
+    this.activatedRoute.params.subscribe(async (params) => {
+      const idUser = params.iduser;
+      const postActualizado = await this.usersService.updateUser(idUser, pUser);
+      console.log(postActualizado);
+    });
+  } //???????
 }
