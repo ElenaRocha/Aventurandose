@@ -39,6 +39,7 @@ const trailController = {
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
+
       res.status(200).json({ ...trailCollection });
     } catch (err) {
       res.send("Error al obtener datos");
@@ -47,8 +48,9 @@ const trailController = {
 
   getAllTags: async function (req, res) {
     try {
-      const trailCollection = await Tag.find().populate("trails");
-      res.status(200).json({ ...trailCollection });
+      const tagCollection = await Tag.find().populate("trails");
+
+      res.status(200).json({ ...tagCollection });
     } catch (err) {
       res.send("Error al obtener datos");
     }
@@ -56,8 +58,9 @@ const trailController = {
 
   getAllCathegories: async function (req, res) {
     try {
-      const trailCollection = await Cathegory.find().populate("trails");
-      res.status(200).json({ ...trailCollection });
+      const cathegoryCollection = await Cathegory.find().populate("trails");
+
+      res.status(200).json({ ...cathegoryCollection });
     } catch (err) {
       res.send("Error al obtener datos");
     }
@@ -71,6 +74,7 @@ const trailController = {
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
+
       res.status(200).json(getTrail);
     } catch (err) {
       res.send("Error al obtener datos");
@@ -80,10 +84,12 @@ const trailController = {
   getTrailByTag: async function (req, res) {
     try {
       const getTag = req.params.tag;
+
       const getTrail = await Trail.find({ tags: getTag })
         .populate("cathegories")
         .populate("tags")
         .populate("comments");
+
       res.status(200).json(getTrail);
     } catch (err) {
       res.send("Error al obtener datos");
@@ -180,7 +186,7 @@ const trailController = {
         });
       }
     );
-  }, //si dejas campos sin enviar, se resetean a null
+  },
 
   deleteTrail: async function (req, res) {
     if (req.email !== "elenarocha@gmail.com") {
@@ -236,7 +242,7 @@ const trailController = {
         );
       }
     );
-  }, //limitar el número  de etiquetas y catewgorías por ruta, y asegurarse de que no se repiten
+  }, //limitar el número  de etiquetas y categorías por ruta, y asegurarse de que no se repiten
 
   addTag: async function (req, res) {
     const trailId = req.params.trail_id;

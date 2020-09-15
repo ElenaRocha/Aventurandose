@@ -40,27 +40,30 @@ export class TrailsService {
   }
 
   getAllTags(): Promise<any[]> {
-    //no tiene ruta
+    const specificUrl = this.baseUrl + '/listado/categorías';
+
+    return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
   getAllCathegories(): Promise<any[]> {
-    //no tiene ruta
+    const specificUrl = this.baseUrl + '/listado/etiquetas';
+
+    return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
   getTrailByCathegory(pCathegory): Promise<any[]> {
-    //JSONP request
-    const specificUrl = this.baseUrl + '/listado/categorías' + pCathegory;
+    const specificUrl = this.baseUrl + '/listado/categorias' + pCathegory;
 
-    return this.httpClient.get<any>(specificUrl).toPromise();
+    return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
   getTrailByTag(pTag): Promise<any[]> {
     const specificUrl = this.baseUrl + '/listado/etiquetas' + pTag;
 
-    return this.httpClient.get<any>(specificUrl).toPromise();
+    return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
-  getTrailById(pId): Promise<any[]> {
+  getTrailById(pId): Promise<any> {
     const specificUrl = this.baseUrl + '/listado/ruta' + pId;
 
     return this.httpClient.get<any>(specificUrl).toPromise();
@@ -94,12 +97,26 @@ export class TrailsService {
     return this.httpClient.delete(this.baseUrl).toPromise();
   }
 
-  addCathegory(pCathegory): Promise<any> {
-    const specificUrl = this.baseUrl + '/categorizar'; //.../:trail_id/:cathegory_id
+  addCathegory(pTrail, pCathegory): Promise<any> {
+    const specificUrl = this.baseUrl + '/categorizar' + pTrail + pCathegory;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json; charset=UTF-8',
+      }),
+    };
+    return this.httpClient.post(specificUrl, httpOptions).toPromise();
   }
 
-  addTag(pTag): Promise<any> {
-    const specificUrl = this.baseUrl + '/etiquetar'; //.../:trail_id/:tag_id
+  addTag(pTrail, pTag): Promise<any> {
+    const specificUrl = this.baseUrl + '/etiquetar' + pTrail + pTag;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json; charset=UTF-8',
+      }),
+    };
+    return this.httpClient.post(specificUrl, httpOptions).toPromise();
   }
 
   addComment(pTrial, pUser, pComment): Promise<any> {

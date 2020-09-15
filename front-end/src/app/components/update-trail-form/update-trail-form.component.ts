@@ -7,11 +7,11 @@ import { Trail } from '../../models/trail.model';
 import { User } from '../../models/user.model';
 
 @Component({
-  selector: 'app-comment-and-tag',
-  templateUrl: './comment-and-tag.component.html',
-  styleUrls: ['./comment-and-tag.component.css'],
+  selector: 'app-update-trail-form',
+  templateUrl: './update-trail-form.component.html',
+  styleUrls: ['./update-trail-form.component.css'],
 })
-export class CommentAndTagComponent implements OnInit {
+export class UpdateTrailFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

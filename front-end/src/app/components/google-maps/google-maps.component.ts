@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { GoogleMapsService } from '../../services/google-maps.service';
 
 @Component({
   selector: 'app-google-maps',

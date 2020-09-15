@@ -1,15 +1,33 @@
 <header>
-  <h1>LOGO</h1>
   <nav>
     <ul>
-      <li><a [routerLink]="['/home']" routerLinkActive="activo">Home</a></li>
       <li>
-        <a [routerLink]="['/rutas']" routerLinkActive="activo">Rutas</a>
+        <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Logo</a>
       </li>
       <li>
-        <a [routerLink]="['/usuarios']" routerLinkActive="activo">Regístrate</a>
+        <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Rutas</a>
       </li>
+      <li>
+        <a [routerLink]="['/usuarios/registrate']" routerLinkActive="activo"
+          >Regístrate</a
+        >
+      </li>
+      <!--contacto-->
     </ul>
+    <div>
+      <input type="text" value="Buscar" />
+      <button>Buscar</button>
+    </div>
+
+    <!--<select
+      class="form-control"
+      name="cathegory"
+      formControlName="cathegory"
+      *ngFor="let cathegory of arrCathegories"
+    >
+      <option value="">Categorías</option>
+      <option value="{{ cathegory.name }}">{{ cathegory.name }}</option>
+    </select>-->
   </nav>
 </header>
 <router-outlet></router-outlet>

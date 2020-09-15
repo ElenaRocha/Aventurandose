@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { ActivatedRoute } from '@angular/router';
+import { Cathegory } from '../../models/cathegory.model';
+import { Comment } from '../../models/comment.model';
+import { Tag } from '../../models/tag.model';
+import { Trail } from '../../models/trail.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-form',
@@ -8,41 +13,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements OnInit {
-  updatedUser: any;
-  deletedUser: any;
+  constructor(private router: Router) {}
 
-  constructor(
-    private usersService: UsersService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.updatedUser = {};
-  }
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(async (params) => {
-      const idUser = params.iduser;
-      this.updatedUser = await this.usersService.getUserById(idUser); // método para obtener usuario por id
-      console.log(this.updatedUser);
-    });
-
-    this.activatedRoute.params.subscribe(async (params) => {
-      const idUser = params.iduser;
-      this.deletedUser = await this.usersService.unsuscribe(idUser);
-    }); //????????
-  }
-
-  async createUser(pUser) {
-    const newUser = await this.usersService.createUser(pUser);
-
-    console.log(newUser);
-    // en situaciones normales enrutariamos al listado this.router.navigate
-  }
-
-  async updateUser(pUser): Promise<any> {
-    this.activatedRoute.params.subscribe(async (params) => {
-      const idUser = params.iduser;
-      const postActualizado = await this.usersService.updateUser(idUser, pUser);
-      console.log(postActualizado);
-    });
-  } //???????
+  ngOnInit(): void {}
+  /*onclick en el formulario
+  
+  recogerUser(): void {
+    const existe = this.userService.comprobarUser(
+      this.usuario.user,
+      this.usuario.password
+    );
+    if (existe) {
+      localStorage.setItem('logado', 'activo');
+      this.router.navigate(['/info']);
+    } else {
+      alert('El usuario o la contraseña es incorrecta');
+    }
+  } 
+  
+  logout(): void {
+    localStorage.removeItem('logado');
+    this.router.navigate(['/']);
+  }*/
 }

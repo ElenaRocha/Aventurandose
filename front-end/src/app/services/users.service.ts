@@ -13,9 +13,27 @@ export class UsersService {
     this.baseUrl = 'http://localhost:3000/usuarios';
   }
 
-  getWeather(): Promise<any[]> {
-    const specifictUrl = this.baseUrl + '/el-tiempo'; //.../:lat/:lon
-  } //??
+  /*private handleError(error: HttpErrorResponse) {
+  if (error.error instanceof ErrorEvent) {
+    // A client-side or network error occurred. Handle it accordingly.
+    console.error('An error occurred:', error.error.message);
+  } else {
+    // The backend returned an unsuccessful response code.
+    // The response body may contain clues as to what went wrong.
+    console.error(
+      `Backend returned code ${error.status}, ` +
+      `body was: ${error.error}`);
+  }
+  // Return an observable with a user-facing error message.
+  return throwError(
+    'Something bad happened; please try again later.');
+} */
+
+  getWeather(lat, lon): Promise<any> {
+    const specificUrl = this.baseUrl + '/el-tiempo' + lat + lon;
+
+    return this.httpClient.get<any>(specificUrl).toPromise();
+  }
 
   createUser(pUser): Promise<any> {
     const specificUrl = this.baseUrl + '/darse-de-alta';
@@ -28,8 +46,14 @@ export class UsersService {
     return this.httpClient.post(specificUrl, pUser, httpOptions).toPromise();
   }
 
+  getUserById(pId): Promise<any> {
+    const specificUrl = this.baseUrl + '/ver-perfil' + pId;
+
+    return this.httpClient.get<any>(specificUrl).toPromise();
+  }
+
   updateUser(pId, pUser): Promise<any> {
-    const specificUrl = this.baseUrl + 'modificar-perfil' + pId;
+    const specificUrl = this.baseUrl + 'ver-perfil' + pId;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -40,7 +64,7 @@ export class UsersService {
   }
 
   unsuscribe(pId): Promise<any> {
-    const specificUrl = this.baseUrl + '/darse-de-baja' + pId;
+    const specificUrl = this.baseUrl + '/ver-perfil' + pId;
 
     return this.httpClient.delete(this.baseUrl).toPromise();
   }

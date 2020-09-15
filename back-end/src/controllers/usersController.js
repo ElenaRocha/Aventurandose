@@ -54,6 +54,18 @@ const usersController = {
     });
   },
 
+  getUserById: async function (req, res) {
+    try {
+      const getId = req.params.id;
+
+      const getUser = await User.findById(getId);
+
+      res.status(200).json(getUser);
+    } catch (err) {
+      res.send("Error al obtener datos");
+    }
+  },
+
   updateUser: async function (req, res) {
     const newUserInfo = req.body;
     const userId = req.params.id;
@@ -129,9 +141,12 @@ const usersController = {
       expiresIn: 60 * 60 * 24,
     });
 
+    const email = userData.email;
+
     res.status(200).json({
       message: "Login correcto",
       token,
+      email,
     });
   },
 };

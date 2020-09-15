@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TrailsService } from 'src/app/services/trails.service';
-import { ActivatedRoute } from '@angular/router';
+import { TrailsService } from '../../services/trails.service';
+import { Cathegory } from '../../models/cathegory.model';
+import { Comment } from '../../models/comment.model';
+import { Tag } from '../../models/tag.model';
+import { Trail } from '../../models/trail.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-all-trails',
@@ -8,7 +12,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./all-trails.component.css'],
 })
 export class AllTrailsComponent implements OnInit {
-  constructor() {}
+  arrCathegories: Array<any>;
+  algo: string;
 
-  ngOnInit(): void {}
+  constructor(private trailsService: TrailsService) {}
+
+  async ngOnInit() {
+    try {
+      this.arrCathegories = await this.trailsService.getAllCathegories();
+      console.log('arrray cat', typeof this.arrCathegories);
+    } catch (error) {
+      console.log(error);
+    }
+
+    this.algo = 'Hola desde el componente';
+
+    /*this.trailsService
+      .getAllTrails()
+      .then((result) => {
+        this.arrTrails = result;
+      })
+      .catch((err) => {
+        console.log(err);
+      });*/
+  }
 }
