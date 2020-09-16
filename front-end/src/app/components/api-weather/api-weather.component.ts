@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { Cathegory } from '../../models/cathegory.model';
-import { Comment } from '../../models/comment.model';
-import { Tag } from '../../models/tag.model';
-import { Trail } from '../../models/trail.model';
-import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-api-weather',
@@ -12,7 +8,26 @@ import { User } from '../../models/user.model';
   styleUrls: ['./api-weather.component.css'],
 })
 export class ApiWeatherComponent implements OnInit {
-  constructor() {}
+  weather: Array<any>;
 
-  ngOnInit(): void {}
+  constructor(
+    private usersService: UsersService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(async (params) => {
+      const pLat = '';
+      const pLon = '';
+      this.usersService
+        .getWeather(pLat, pLon)
+        .then((result) => {
+          this.weather = result;
+          console.log(this.weather);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
 }

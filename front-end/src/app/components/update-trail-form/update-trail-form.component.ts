@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TrailsService } from 'src/app/services/trails.service';
 import { Cathegory } from '../../models/cathegory.model';
 import { Comment } from '../../models/comment.model';
@@ -12,7 +14,39 @@ import { User } from '../../models/user.model';
   styleUrls: ['./update-trail-form.component.css'],
 })
 export class UpdateTrailFormComponent implements OnInit {
-  constructor() {}
+  formulario: FormGroup;
+  arrCathegories: Array<any>;
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private trailsService: TrailsService) {
+    this.formulario = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      time: new FormControl('', [Validators.required]),
+      length: new FormControl('', [Validators.required]),
+      slope: new FormControl('', [Validators.required]),
+      circular: new FormControl(''),
+      province: new FormControl('', [Validators.required]),
+      transport: new FormControl('', [Validators.required]),
+    });
+  }
+
+  ngOnInit() {
+    this.trailsService
+      .getAllCathegories()
+      .then((result) => {
+        this.arrCathegories = result;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    //getTrailById
+  }
+
+  getData(): void {
+    //this.trailsService.updateTrail(this.formulario.value);
+    this.router.navigate(['/rutas/listado']);
+  }
+
+  //deleteTrail
 }

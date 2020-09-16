@@ -1,1 +1,151 @@
-<p>update-user-form works!</p>
+<div class="container m-4">
+  <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
+    <div class="form-group">
+      <label>Nombre</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Escriba su nombre"
+        formControlName="name"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.name.errors?.required &&
+          formulario.controls.name.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.name.errors?.minlength &&
+          formulario.controls.name.touched
+        "
+      >
+        El campo debe tener al menos 3 caracteres
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Apellidos</label>
+      <input
+        type="text"
+        name="surname"
+        class="form-control"
+        placeholder="Escriba sus apellidos"
+        formControlName="surname"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.surname.errors?.required &&
+          formulario.controls.surname.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.surname.errors?.minlength &&
+          formulario.controls.surname.touched
+        "
+      >
+        El campo debe tener al menos 3 caracteres
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Alias</label>
+      <input
+        type="text"
+        name="alias"
+        class="form-control"
+        placeholder="Elija un nombre de usuario"
+        formControlName="alias"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.alias.errors?.required &&
+          formulario.controls.alias.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.alias.errors?.minlength &&
+          formulario.controls.alias.touched
+        "
+      >
+        El campo debe tener al menos 3 caracteres
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Introduzca su email"
+        formControlName="email"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.email.errors?.required &&
+          formulario.controls.email.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.email.errors?.pattern &&
+          formulario.controls.email.touched
+        "
+      >
+        Tienes que ser un email valido
+      </p>
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Introduzca una contraseña"
+        formControlName="password"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.password.errors?.required &&
+          formulario.controls.password.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.password.errors?.pattern &&
+          formulario.controls.password.touched
+        "
+      >
+        Contraseña demasiado devil
+      </p>
+    </div>
+
+    <input
+      [disabled]="!formulario.valid"
+      type="submit"
+      class="btn btn-warning m-4"
+      value="Enviar"
+    />
+  </form>
+</div>

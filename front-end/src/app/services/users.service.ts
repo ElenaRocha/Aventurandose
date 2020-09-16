@@ -30,7 +30,7 @@ export class UsersService {
 } */
 
   getWeather(lat, lon): Promise<any> {
-    const specificUrl = this.baseUrl + '/el-tiempo' + lat + lon;
+    const specificUrl = this.baseUrl + '/el-tiempo/' + lat + '/' + lon;
 
     return this.httpClient.get<any>(specificUrl).toPromise();
   }
@@ -47,13 +47,13 @@ export class UsersService {
   }
 
   getUserById(pId): Promise<any> {
-    const specificUrl = this.baseUrl + '/ver-perfil' + pId;
+    const specificUrl = this.baseUrl + '/ver-perfil/' + pId;
 
     return this.httpClient.get<any>(specificUrl).toPromise();
   }
 
   updateUser(pId, pUser): Promise<any> {
-    const specificUrl = this.baseUrl + 'ver-perfil' + pId;
+    const specificUrl = this.baseUrl + 'ver-perfil/' + pId;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -64,7 +64,7 @@ export class UsersService {
   }
 
   unsuscribe(pId): Promise<any> {
-    const specificUrl = this.baseUrl + '/ver-perfil' + pId;
+    const specificUrl = this.baseUrl + '/ver-perfil/' + pId;
 
     return this.httpClient.delete(this.baseUrl).toPromise();
   }
@@ -78,5 +78,5 @@ export class UsersService {
       }),
     };
     return this.httpClient.post(specificUrl, pUser, httpOptions).toPromise();
-  } //traerse el token?
+  }
 }

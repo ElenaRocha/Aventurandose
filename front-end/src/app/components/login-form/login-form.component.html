@@ -1,38 +1,38 @@
 <div class="container m-4">
   <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
     <div class="form-group">
-      <label>Título</label>
+      <label>Email</label>
       <input
-        type="text"
-        name="title"
+        type="email"
+        name="email"
         class="form-control"
-        placeholder="Título"
-        formControlName="title"
+        placeholder="Introduzca su email"
+        formControlName="email"
       />
       <p
         class="error"
         *ngIf="
-          formulario.controls.title.errors?.required &&
-          formulario.controls.title.touched
+          formulario.controls.email.errors?.required &&
+          formulario.controls.email.touched
         "
       >
         El campo es obligatorio
       </p>
     </div>
     <div class="form-group">
-      <label>Contenido</label>
+      <label>Contraseña</label>
       <input
-        type="text"
-        name="content"
+        type="password"
+        name="password"
         class="form-control"
-        placeholder="Contenido del comentario"
-        formControlName="content"
+        placeholder="Introduzca su contraseña"
+        formControlName="password"
       />
       <p
         class="error"
         *ngIf="
-          formulario.controls.content.errors?.required &&
-          formulario.controls.content.touched
+          formulario.controls.password.errors?.required &&
+          formulario.controls.password.touched
         "
       >
         El campo es obligatorio
@@ -45,5 +45,4 @@
       value="Enviar"
     />
   </form>
-  <!--etiquetas-->
 </div>

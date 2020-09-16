@@ -1,1 +1,8 @@
-<p>filtered-trails works!</p>
+<h3>{{ cname }}</h3>
+<!--mayúscula-->
+<div>
+  <li *ngFor="let trail of arrTrails">
+    <a [routerLink]="['/rutas/ruta/', trail._id]">{{ trail.name }}</a>
+    <p>{{ trail.description.slice(0, 149) }}...</p>
+  </li>
+</div>

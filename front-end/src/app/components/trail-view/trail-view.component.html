@@ -1,1 +1,12 @@
-<p>trail-view works!</p>
+<h1>{{ trail.name }}</h1>
+<p>{{ trail.description }}</p>
+<ul>
+  <li>Duración: {{ trail.time }}</li>
+  <li>Kilómetros: {{ trail.length }}</li>
+  <li>Desnivel: {{ trail.slope }}</li>
+  <li>Circular:</li>
+  <li>Comunidad Autónoma: {{ trail.province }}</li>
+  <li>Cómo llegar: {{ trail.transport }}</li>
+</ul>
+<!--<a [routerLink]="['rutas/comentar/', user_id, trail_id, tag_id]">Actualizar ruta</a>-->
+<a [routerLink]="['rutas/formulario/', trail._id]">Actualizar ruta</a>

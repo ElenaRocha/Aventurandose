@@ -1,6 +1,4 @@
-//const express = require("express");
 const mongoose = require("mongoose");
-//const fs = require("fs");
 
 const Trail = require("../models/trailModel.js");
 const User = require("../models/userModel.js");
@@ -8,16 +6,6 @@ const Cathegory = require("../models/cathegoryModel.js");
 const Tag = require("../models/tagModel.js");
 const Comment = require("../models/commentModel.js");
 const getWeather = require("../services/apiWeather.js");
-
-//const multer = require("multer");
-
-//const app = express();
-
-/*app.use(multer({ dest: "./uploads/",
-  rename: function (fieldname, filename) {
-    return filename;
-  },
- }));*/
 
 mongoose
   .connect(process.env.DDBB_CONNECTION, {
@@ -50,7 +38,7 @@ const trailController = {
     try {
       const tagCollection = await Tag.find().populate("trails");
 
-      res.status(200).json({ ...tagCollection });
+      res.status(200).json(tagCollection);
     } catch (err) {
       res.send("Error al obtener datos");
     }
@@ -60,7 +48,7 @@ const trailController = {
     try {
       const cathegoryCollection = await Cathegory.find().populate("trails");
 
-      res.status(200).json({ ...cathegoryCollection });
+      res.status(200).json(cathegoryCollection);
     } catch (err) {
       res.send("Error al obtener datos");
     }
@@ -139,7 +127,6 @@ const trailController = {
     trail.province = trailInfo.province;
     trail.location = trailInfo.location;
     trail.trasnport = trailInfo.transport;
-    trail.cathegories = trailInfo.cathegory;
 
     trail.save((err, savedInfo) => {
       if (err) throw new Error("Error al registrar la ruta", err);
@@ -174,7 +161,6 @@ const trailController = {
         province: newTrailInfo.province,
         location: newTrailInfo.location,
         trasnport: newTrailInfo.transport,
-        cathegories: newTrailInfo.cathegory,
       },
       { new: true },
       (err, savedInfo) => {

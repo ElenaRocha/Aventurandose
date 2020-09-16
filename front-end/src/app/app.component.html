@@ -1,36 +1,35 @@
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Logo</a>
-      </li>
-      <li>
-        <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Rutas</a>
-      </li>
-      <li>
-        <a [routerLink]="['/usuarios/registrate']" routerLinkActive="activo"
-          >Regístrate</a
-        >
-      </li>
-      <!--contacto-->
-    </ul>
-    <div>
+<header class="container m-4">
+  <ul class="nav">
+    <li class="nav-item m-2">
+      <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Logo</a>
+    </li>
+    <li class="nav-item m-2">
+      <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Rutas</a>
+    </li>
+    <li class="nav-item m-2">
+      <a [routerLink]="['/usuarios/registrate']" routerLinkActive="activo"
+        >Regístrate</a
+      >
+    </li>
+    <!--contacto-->
+    <!--<div class="nav-item m-2">
       <input type="text" value="Buscar" />
       <button>Buscar</button>
-    </div>
-
-    <!--<select
-      class="form-control"
-      name="cathegory"
-      formControlName="cathegory"
-      *ngFor="let cathegory of arrCathegories"
-    >
-      <option value="">Categorías</option>
-      <option value="{{ cathegory.name }}">{{ cathegory.name }}</option>
-    </select>-->
-  </nav>
+    </div>-->
+    <select class="nav-item dropdown m-2" (change)="getCathegory($event)">
+      <option class="dropdown-item" selected>Selecciona una categoría</option>
+      <option
+        class="dropdown-item"
+        *ngFor="let cathegory of arrCathegories | keyvalue"
+        [value]="cathegory.value._id"
+      >
+        {{ cathegory.value.name }}
+      </option>
+    </select>
+  </ul>
 </header>
 <router-outlet></router-outlet>
+<a [routerLink]="['/rutas/formulario']" routerLinkActive="activo">Crear ruta</a>
 <footer>
   <p class="copyright">&copy; Elena Rocha 2020</p>
 </footer>

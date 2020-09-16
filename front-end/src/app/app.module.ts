@@ -16,6 +16,7 @@ import { ApiWeatherComponent } from './components/api-weather/api-weather.compon
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 import { UpdateTrailFormComponent } from './components/update-trail-form/update-trail-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UpdateTrailFormComponent } from './components/update-trail-form/update-
     GoogleMapsComponent,
     UpdateUserFormComponent,
     UpdateTrailFormComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

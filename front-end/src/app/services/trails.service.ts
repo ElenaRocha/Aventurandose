@@ -40,31 +40,31 @@ export class TrailsService {
   }
 
   getAllTags(): Promise<any[]> {
-    const specificUrl = this.baseUrl + '/listado/categorías';
-
-    return this.httpClient.get<any[]>(specificUrl).toPromise();
-  }
-
-  getAllCathegories(): Promise<any[]> {
     const specificUrl = this.baseUrl + '/listado/etiquetas';
 
     return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
+  getAllCathegories(): Promise<any[]> {
+    const specificUrl = this.baseUrl + '/listado/categorias';
+
+    return this.httpClient.get<any[]>(specificUrl).toPromise();
+  }
+
   getTrailByCathegory(pCathegory): Promise<any[]> {
-    const specificUrl = this.baseUrl + '/listado/categorias' + pCathegory;
+    const specificUrl = this.baseUrl + '/listado/categorias/' + pCathegory;
 
     return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
   getTrailByTag(pTag): Promise<any[]> {
-    const specificUrl = this.baseUrl + '/listado/etiquetas' + pTag;
+    const specificUrl = this.baseUrl + '/listado/etiquetas/' + pTag;
 
     return this.httpClient.get<any[]>(specificUrl).toPromise();
   }
 
   getTrailById(pId): Promise<any> {
-    const specificUrl = this.baseUrl + '/listado/ruta' + pId;
+    const specificUrl = this.baseUrl + '/listado/ruta/' + pId;
 
     return this.httpClient.get<any>(specificUrl).toPromise();
   }
@@ -81,7 +81,7 @@ export class TrailsService {
   }
 
   updateTrail(pId, pTrail): Promise<any> {
-    const specificUrl = this.baseUrl + '/formulario' + pId;
+    const specificUrl = this.baseUrl + '/formulario/' + pId;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -92,13 +92,14 @@ export class TrailsService {
   }
 
   deleteTrail(pId): Promise<any> {
-    const specificUrl = this.baseUrl + '/formulario' + pId;
+    const specificUrl = this.baseUrl + '/formulario/' + pId;
 
     return this.httpClient.delete(this.baseUrl).toPromise();
   }
 
   addCathegory(pTrail, pCathegory): Promise<any> {
-    const specificUrl = this.baseUrl + '/categorizar' + pTrail + pCathegory;
+    const specificUrl =
+      this.baseUrl + '/categorizar/' + pTrail + '/' + pCathegory;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -109,7 +110,7 @@ export class TrailsService {
   }
 
   addTag(pTrail, pTag): Promise<any> {
-    const specificUrl = this.baseUrl + '/etiquetar' + pTrail + pTag;
+    const specificUrl = this.baseUrl + '/etiquetar/' + pTrail + '/' + pTag;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -120,7 +121,7 @@ export class TrailsService {
   }
 
   addComment(pTrial, pUser, pComment): Promise<any> {
-    const specificUrl = this.baseUrl + '/comentar' + pTrial + pUser;
+    const specificUrl = this.baseUrl + '/comentar/' + pTrial + '/' + pUser;
 
     const httpOptions = {
       headers: new HttpHeaders({

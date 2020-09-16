@@ -5,7 +5,7 @@ export class User {
   alias: string;
   email: string;
   password: string;
-  comments: Array<string>;
+  comments: Array<number>;
   constructor(pName, pSurname, pAlias, pEmail, pPassword) {
     this._id = '';
     this.name = pName;

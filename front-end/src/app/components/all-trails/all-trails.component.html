@@ -1,8 +1,8 @@
-<h1>Listado de rutas</h1>
-<p>{{ algo }}</p>
-<ul *ngFor="let cathegory of arrCathegories">
-  <p>{{ cathegory.name }}</p>
-  <li *ngFor="let trail of cathegory">
-    <a [routerLink]="['/rutas/listado/ruta' + trail._id]">{{ trail.name }}</a>
-  </li>
-</ul>
+<div class="container">
+  <ul *ngFor="let cathegory of arrCathegories | keyvalue">
+    <p>{{ cathegory.value.name }}</p>
+    <li *ngFor="let trail of cathegory.value.trails">
+      <a [routerLink]="['/rutas/ruta/', trail._id]">{{ trail.name }}</a>
+    </li>
+  </ul>
+</div>

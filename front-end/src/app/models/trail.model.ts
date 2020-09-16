@@ -9,20 +9,19 @@ export class Trail {
   province: string;
   location: Array<number>;
   transport: string;
-  cathegories: Array<string>;
-  tags: Array<string>;
-  comments: Array<string>;
+  cathegories: Array<number>;
+  tags: Array<number>;
+  comments: Array<number>;
   constructor(
     pName,
     pDescription,
     pTime,
     pLength,
     pSlope,
-    pCircular,
+    //pCircular,
     pProvince,
-    pLocation,
-    pTransport,
-    pCathegories
+    //pLocation,
+    pTransport
   ) {
     this._id = '';
     this.name = pName;
@@ -30,11 +29,11 @@ export class Trail {
     this.time = pTime;
     this.length = pLength;
     this.slope = pSlope;
-    this.circular = pCircular;
+    this.circular = true;
     this.province = pProvince;
-    this.location = pLocation;
+    this.location = [];
     this.transport = pTransport;
-    this.cathegories = pCathegories;
+    this.cathegories = [];
     this.tags = [];
     this.comments = [];
   }
