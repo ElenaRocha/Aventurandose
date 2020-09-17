@@ -1,5 +1,5 @@
-<header class="container m-4">
-  <ul class="nav">
+<header class="container-fluid fixed-top">
+  <ul class="nav m-3">
     <li class="nav-item m-2">
       <a [routerLink]="['/rutas/listado']" routerLinkActive="activo">Logo</a>
     </li>
@@ -12,12 +12,11 @@
       >
     </li>
     <!--contacto-->
-    <!--<div class="nav-item m-2">
-      <input type="text" value="Buscar" />
-      <button>Buscar</button>
-    </div>-->
+
     <select class="nav-item dropdown m-2" (change)="getCathegory($event)">
-      <option class="dropdown-item" selected>Selecciona una categoría</option>
+      <option class="dropdown-item" value="" selected="selected">
+        Selecciona una categoría
+      </option>
       <option
         class="dropdown-item"
         *ngFor="let cathegory of arrCathegories | keyvalue"
@@ -26,10 +25,110 @@
         {{ cathegory.value.name }}
       </option>
     </select>
+    <!--<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button">Button</button>
+  </div>
+</div>-->
   </ul>
 </header>
-<router-outlet></router-outlet>
-<a [routerLink]="['/rutas/formulario']" routerLinkActive="activo">Crear ruta</a>
-<footer>
-  <p class="copyright">&copy; Elena Rocha 2020</p>
+<main class="container-fluid">
+  <router-outlet></router-outlet
+  ><a class="m-4" [routerLink]="['/rutas/formulario']" routerLinkActive="activo"
+    >Crear ruta</a
+  >
+</main>
+<footer class="container-fluid fixed-bottom">
+  <p class="copyright mt-3">&copy; Elena Rocha 2020</p>
 </footer>
+
+<!--<header class="container-fluid fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+  </a>
+    <a class="navbar-brand" href="#">Menu</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            [routerLink]="['/rutas/listado']"
+            routerLinkActive="activo"
+            >Rutas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/usuarios/registrate']"
+            routerLinkActive="activo"
+            >Regístrate</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Categorías
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Buscar
+        </button>
+      </form>
+    </div>
+  </nav>
+</header>
+<main class="container-fluid">
+  <router-outlet></router-outlet
+  ><a class="m-4" [routerLink]="['/rutas/formulario']" routerLinkActive="activo"
+    >Crear ruta</a
+  >
+</main>
+<footer class="container-fluid fixed-bottom">
+  <p class="copyright mt-3">&copy; Elena Rocha 2020</p>
+</footer>-->
+
+<!--<select class="nav-item dropdown m-2" (change)="getCathegory($event)">
+      <option class="dropdown-item" value="" selected="selected">
+        Selecciona una categoría
+      </option>
+      <option
+        class="dropdown-item"
+        *ngFor="let cathegory of arrCathegories | keyvalue"
+        [value]="cathegory.value._id"
+      >
+        {{ cathegory.value.name }}
+      </option>
+    </select>-->

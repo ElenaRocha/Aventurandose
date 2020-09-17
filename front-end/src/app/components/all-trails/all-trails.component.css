@@ -1,0 +1,23 @@
+.jumbotron {
+  background-image: url("../../../assets/img/banner4.1.jpg");
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.jumbotron h1 {
+  font-family: quando;
+  color: #e27311;
+}
+
+.lead {
+  font-family: judson-regular;
+}
+
+h3 {
+  font-family: judson-bold;
+}
+
+a {
+  font-family: judson-regular;
+  color: black;
+}

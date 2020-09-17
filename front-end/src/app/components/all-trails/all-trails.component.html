@@ -1,8 +1,27 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Aventurándose</h1>
+    <p class="lead">zdtjeytjryjryj.</p>
+  </div>
+</div>
 <div class="container">
-  <ul *ngFor="let cathegory of arrCathegories | keyvalue">
-    <p>{{ cathegory.value.name }}</p>
-    <li *ngFor="let trail of cathegory.value.trails">
-      <a [routerLink]="['/rutas/ruta/', trail._id]">{{ trail.name }}</a>
-    </li>
-  </ul>
+  <section *ngFor="let cathegory of arrCathegories | keyvalue">
+    <h3>{{ cathegory.value.name }}</h3>
+    <div
+      class="card"
+      style="width: 18rem"
+      *ngFor="let trail of cathegory.value.trails"
+    >
+      <img
+        class="card-img-top"
+        src="../../../assets/img/generic-trail.jpg"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <a [routerLink]="['/rutas/ruta/', trail._id]"
+          ><h5 class="card-title">{{ trail.name }}</h5></a
+        >
+      </div>
+    </div>
+  </section>
 </div>

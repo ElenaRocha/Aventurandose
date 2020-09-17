@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { TrailsService } from '../services/trails.service';
 
@@ -21,11 +14,13 @@ export class LoginGuard implements CanActivate {
   ) {}
 
   canActivate() {
-    const estado = localStorage.getItem('logado');
-    if (estado !== 'activo') {
-      this.router.navigate(['/']);
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      this.router.navigate(['usuarios/registrate']);
       return false;
     }
+
     return true;
   }
 }

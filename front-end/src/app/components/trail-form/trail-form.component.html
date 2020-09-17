@@ -95,27 +95,30 @@
         El campo es obligatorio
       </p>
     </div>
-    <div class="form-group">
+    <div class="form-check">
       <label>Circular</label>
-      <input
-        type="radio"
-        id="true"
-        name="circular"
-        value="true"
-        class="form-control"
-        formControlName="circular"
-      />
-      <label for="true">Sí</label>
-      <input
-        type="radio"
-        id="false"
-        name="circular"
-        value="false"
-        class="form-control"
-        formControlName="circular"
-      />
-      <label for="false">No</label>
+      <div>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="circular"
+          id="circular-true"
+          value="true"
+        />
+        <label class="form-check-lable" for="circular-true">Sí</label>
+      </div>
+      <div>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="circular"
+          id="curcular-false"
+          value="false"
+        />
+        <label class="form-check-lable" for="circular-false">No</label>
+      </div>
     </div>
+
     <div class="form-group">
       <label>Comunidad autónoma</label>
       <input
@@ -155,24 +158,6 @@
         El campo es obligatorio
       </p>
     </div>
-    <!--<div>
-      <label>Categoría</label>
-      <select class="form-control" name="cathegory" formControlName="cathegory">
-        <option>Selecciona una categoría</option>
-        <option *ngFor="let cathegory of arrCathegories | keyvalue">
-          {{ cathegory.value.name }}
-        </option>
-      </select>
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.cathegory.errors?.required &&
-          formulario.controls.cathegory.touched
-        "
-      >
-        Debes elegir una categoría
-      </p>
-    </div>-->
     <input
       [disabled]="!formulario.valid"
       type="submit"

@@ -10,6 +10,7 @@ import { UpdateUserFormComponent } from './components/update-user-form/update-us
 import { UpdateTrailFormComponent } from './components/update-trail-form/update-trail-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LoginGuard } from './guards/login.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'rutas/listado' },
@@ -23,24 +24,24 @@ const routes: Routes = [
   {
     path: 'rutas/formulario',
     component: TrailFormComponent,
-    /*canActivate: [LoginGuard],*/
+    canActivate: [AdminGuard],
   },
   {
     path: 'rutas/formulario/:id',
     component: UpdateTrailFormComponent,
-    /*canActivate: [LoginGuard],*/
+    canActivate: [AdminGuard],
   },
   {
-    path: 'rutas/comentar/:user_id/:trail_id/:tag_id',
+    path: 'rutas/comentar/:user_id/:trail_id',
     component: CommentAndTagComponent,
-    /*canActivate: [LoginGuard],*/
+    canActivate: [LoginGuard],
   },
   { path: 'usuarios/registrate', component: UserFormComponent },
   { path: 'usuarios/login', component: LoginFormComponent },
   {
     path: 'usuraios/modifircar-perfil/:id',
     component: UpdateUserFormComponent,
-    /*canActivate: [LoginGuard],*/
+    canActivate: [LoginGuard],
   },
 ];
 

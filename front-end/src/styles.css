@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: quando;
+  src: url("./assets/fonts/Quando/Quando-Regular.ttf");
+}
+@font-face {
+  font-family: judson-bold;
+  src: url("./assets/fonts/Judson/Judson-Bold.ttf");
+}
+@font-face {
+  font-family: judson-italic;
+  src: url("./assets/fonts/Judson/Judson-Italic.ttf");
+}
+@font-face {
+  font-family: judson-regular;
+  src: url("./assets/fonts/Judson/Judson-Regular.ttf");
+}
+
+body {
+  background-color: #e4ffa0 !important;
+}

@@ -33,5 +33,7 @@ export class AppComponent implements OnInit {
       selectElementText,
       $event.target.value,
     ]);
+
+    $event.target.value = '';
   }
 }

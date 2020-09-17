@@ -1,177 +1,27 @@
 <div class="container m-4">
-    <div class="form-group">
-      <label>Nombre</label>
+  <form novalidate [formGroup]="formulario" (ngSubmit)="chooseCathegory()">
+    <div class="form-check">
       <input
-        type="text"
-        name="name"
-        class="form-control"
-        placeholder="Nombre de la ruta"
-        formControlName="name"
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="defaultCheck"
       />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.name.errors?.required &&
-          formulario.controls.name.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
+      <label class="form-check-label" for="defaultCheck">
+        Elegir categorías
+      </label>
     </div>
-    <div class="form-group">
-      <label>Description</label>
+    <div class="form-check" *ngFor="let cathegory of arrCathegories | keyvalue">
       <input
-        type="text"
-        name="description"
-        class="form-control"
-        placeholder="Descripción de la ruta"
-        formControlName="description"
+        class="form-check-input"
+        type="checkbox"
+        value="{{ cathegory.value._id }}"
+        id="cathegory{{ cathegory.value._id }}"
       />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.description.errors?.required &&
-          formulario.controls.description.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
+      <label class="form-check-label" for="cathegory{{ cathegory.value._id }}">
+        {{ cathegory.value.name }}
+      </label>
     </div>
-    <div class="form-group">
-      <label>Duración</label>
-      <input
-        type="text"
-        name="time"
-        class="form-control"
-        placeholder="Duración de la ruta"
-        formControlName="time"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.time.errors?.required &&
-          formulario.controls.time.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-    </div>
-    <div class="form-group">
-      <label>Kilómetros</label>
-      <input
-        type="text"
-        name="length"
-        class="form-control"
-        placeholder="Kilómetros que comprende la ruta"
-        formControlName="length"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.length.errors?.required &&
-          formulario.controls.length.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-    </div>
-    <div class="form-group">
-      <label>Desnivel</label>
-      <input
-        type="text"
-        name="slope"
-        class="form-control"
-        placeholder="Cuántos kilómetros salva la ruta"
-        formControlName="slope"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.slope.errors?.required &&
-          formulario.controls.slope.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-    </div>
-    <div class="form-group">
-      <label>Circular</label>
-      <input
-        type="radio"
-        id="true"
-        name="circular"
-        value="true"
-        class="form-control"
-        formControlName="circular"
-      />
-      <label for="true">Sí</label>
-      <input
-        type="radio"
-        id="false"
-        name="circular"
-        value="false"
-        class="form-control"
-        formControlName="circular"
-      />
-      <label for="false">No</label>
-    </div>
-    <div class="form-group">
-      <label>Comunidad autónoma</label>
-      <input
-        type="text"
-        name="province"
-        class="form-control"
-        placeholder="En qué comunidad autónoma se encunetra"
-        formControlName="province"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.province.errors?.required &&
-          formulario.controls.province.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-    </div>
-    <!--coordenadas-->
-    <div class="form-group">
-      <label>Cómo llegar</label>
-      <input
-        type="text"
-        name="transport"
-        class="form-control"
-        placeholder="Por qué medios de transporte se puede acceder"
-        formControlName="transport"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.transport.errors?.required &&
-          formulario.controls.transport.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-    </div>
-    <!--<div>
-        <label>Categoría</label>
-        <select class="form-control" name="cathegory" formControlName="cathegory">
-          <option>Selecciona una categoría</option>
-          <option *ngFor="let cathegory of arrCathegories | keyvalue">
-            {{ cathegory.value.name }}
-          </option>
-        </select>
-        <p
-          class="error"
-          *ngIf="
-            formulario.controls.cathegory.errors?.required &&
-            formulario.controls.cathegory.touched
-          "
-        >
-          Debes elegir una categoría
-        </p>
-      </div>-->
     <input
       [disabled]="!formulario.valid"
       type="submit"

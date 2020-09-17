@@ -17,6 +17,7 @@ import { GoogleMapsComponent } from './components/google-maps/google-maps.compon
 import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 import { UpdateTrailFormComponent } from './components/update-trail-form/update-trail-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     UpdateUserFormComponent,
     UpdateTrailFormComponent,
     LoginFormComponent,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,

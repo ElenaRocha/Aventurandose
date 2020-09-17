@@ -1,8 +1,14 @@
-<h3>{{ cname }}</h3>
-<!--mayúscula-->
-<div>
-  <li *ngFor="let trail of arrTrails">
-    <a [routerLink]="['/rutas/ruta/', trail._id]">{{ trail.name }}</a>
-    <p>{{ trail.description.slice(0, 149) }}...</p>
-  </li>
+<h3>{{ cname | capitalize }}</h3>
+<div class="card" style="width: 18rem" *ngFor="let trail of arrTrails">
+  <img
+    class="card-img-top"
+    src="../../../assets/img/generic-trail.jpg"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <a [routerLink]="['/rutas/ruta/', trail._id]"
+      ><h5 class="card-title">{{ trail.name }}</h5></a
+    >
+    <p class="card-text">{{ trail.description.slice(0, 149) }}...</p>
+  </div>
 </div>

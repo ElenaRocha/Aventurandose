@@ -108,7 +108,8 @@ const trailController = {
   },
 
   registerTrail: function (req, res) {
-    if (req.email !== "elenarocha@gmail.com") {
+    const role = req.headers["x-role"];
+    if (role !== "admin") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
@@ -139,7 +140,8 @@ const trailController = {
   },
 
   updateTrail: async function (req, res) {
-    if (req.email !== "elenarocha@gmail.com") {
+    const role = req.headers["x-role"];
+    if (role !== "admin") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
@@ -175,7 +177,8 @@ const trailController = {
   },
 
   deleteTrail: async function (req, res) {
-    if (req.email !== "elenarocha@gmail.com") {
+    const role = req.headers["x-role"];
+    if (role !== "admin") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
@@ -194,7 +197,8 @@ const trailController = {
   },
 
   addCathegory: async function (req, res) {
-    if (req.email !== "elenarocha@gmail.com") {
+    const role = req.headers["x-role"];
+    if (role !== "admin") {
       res.status(401).json({
         message: "No tiene permiso para realizar esta acción",
       });
@@ -228,7 +232,7 @@ const trailController = {
         );
       }
     );
-  }, //limitar el número  de etiquetas y categorías por ruta, y asegurarse de que no se repiten
+  },
 
   addTag: async function (req, res) {
     const trailId = req.params.trail_id;

@@ -5,6 +5,7 @@ export class User {
   alias: string;
   email: string;
   password: string;
+  role: string;
   comments: Array<number>;
   constructor(pName, pSurname, pAlias, pEmail, pPassword) {
     this._id = '';
@@ -13,6 +14,7 @@ export class User {
     this.alias = pAlias;
     this.email = pEmail;
     this.password = pPassword;
+    this.role = 'user';
     this.comments = [];
   }
 }

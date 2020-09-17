@@ -137,16 +137,19 @@ const usersController = {
       return;
     }
 
-    const token = jwt.sign({ email: userData.email }, secret, {
+    const token = jwt.sign({ _id: userData._id }, secret, {
       expiresIn: 60 * 60 * 24,
     });
 
-    const email = userData.email;
+    const userId = userData._id;
+
+    const role = userData.role;
 
     res.status(200).json({
       message: "Login correcto",
       token,
-      email,
+      userId,
+      role,
     });
   },
 };

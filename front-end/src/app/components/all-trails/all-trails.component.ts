@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TrailsService } from '../../services/trails.service';
-import { Cathegory } from '../../models/cathegory.model';
 
 @Component({
   selector: 'app-all-trails',

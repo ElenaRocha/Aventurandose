@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
-import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login-form',
@@ -21,8 +20,12 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getData(): void {
-    this.usersService.userLogin(this.formulario.value);
+  async getData() {
+    const respuesta = await this.usersService.userLogin(this.formulario.value);
+    localStorage.setItem('token', respuesta.token);
+    localStorage.setItem('role', respuesta.role);
+    localStorage.setItem('userId', respuesta.userId);
+
     this.router.navigate(['/rutas/listado']);
   }
 }

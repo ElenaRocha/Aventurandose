@@ -18,9 +18,9 @@ export class Trail {
     pTime,
     pLength,
     pSlope,
-    //pCircular,
+    pCircular,
     pProvince,
-    //pLocation,
+    pLocation,
     pTransport
   ) {
     this._id = '';
@@ -29,9 +29,9 @@ export class Trail {
     this.time = pTime;
     this.length = pLength;
     this.slope = pSlope;
-    this.circular = true;
+    this.circular = pCircular;
     this.province = pProvince;
-    this.location = [];
+    this.location = pLocation;
     this.transport = pTransport;
     this.cathegories = [];
     this.tags = [];

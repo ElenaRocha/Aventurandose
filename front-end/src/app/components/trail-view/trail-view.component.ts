@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrailsService } from 'src/app/services/trails.service';
-import { Trail } from '../../models/trail.model';
 
 @Component({
   selector: 'app-trail-view',
@@ -11,11 +10,14 @@ import { Trail } from '../../models/trail.model';
 export class TrailViewComponent implements OnInit {
   pId: string;
   trail: any;
+  userId: any;
 
   constructor(
     private trailsService: TrailsService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.userId = localStorage.getItem('userId');
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(async (params) => {
@@ -25,7 +27,6 @@ export class TrailViewComponent implements OnInit {
         .getTrailById(pId)
         .then((result) => {
           this.trail = result;
-          console.log(this.trail);
         })
         .catch((err) => {
           console.log(err);

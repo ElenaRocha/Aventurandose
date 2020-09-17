@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
-import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-form',
@@ -42,6 +41,6 @@ export class UserFormComponent implements OnInit {
 
   getData(): void {
     this.usersService.createUser(this.formulario.value);
-    this.router.navigate(['/rutas/listado']);
+    this.router.navigate(['/usuarios/login']);
   }
 }
