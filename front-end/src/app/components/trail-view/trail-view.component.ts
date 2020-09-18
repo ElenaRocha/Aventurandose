@@ -11,6 +11,8 @@ export class TrailViewComponent implements OnInit {
   pId: string;
   trail: any;
   userId: any;
+  logado: any;
+  uId: any;
 
   constructor(
     private trailsService: TrailsService,
@@ -20,6 +22,9 @@ export class TrailViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.logado = localStorage.getItem('role');
+    this.uId = localStorage.getItem('userId');
+
     this.activatedRoute.params.subscribe(async (params) => {
       const pId = params.id;
 

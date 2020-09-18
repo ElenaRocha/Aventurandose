@@ -19,3 +19,16 @@
 body {
   background-color: #e4ffa0 !important;
 }
+
+.margin-top70 {
+  margin-top: 90px;
+}
+
+.margin-bottom60 {
+  margin-bottom: 60px;
+}
+
+.card {
+  background-color: transparent !important;
+  border: transparent !important;
+}

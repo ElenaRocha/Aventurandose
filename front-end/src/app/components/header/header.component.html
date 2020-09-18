@@ -1,0 +1,100 @@
+<header class="container-fluid fixed-top">
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand">
+      <img src="../assets/img/logo.png" width="30" height="30" alt="logo"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/rutas/listado']"
+            routerLinkActive="activo"
+            >Rutas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/usuarios/registrate']"
+            routerLinkActive="activo"
+            >Regístrate</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="logado === 'admin'">
+          <a
+            class="nav-link"
+            [routerLink]="['/rutas/formulario']"
+            routerLinkActive="activo"
+            >Crear ruta</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="logado">
+          <a
+            class="nav-link"
+            [routerLink]="['/usuraios/modifircar-perfil', userId]"
+            routerLinkActive="activo"
+            >Modificar perfil</a
+          >
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-item btn btn-outline-success my-2 my-sm-0"
+            type="button"
+            *ngIf="logado"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+          <button
+            class="nav-item btn btn-outline-success my-2 my-sm-0"
+            type="button"
+            *ngIf="!logado"
+            [routerLink]="['/usuarios/login']"
+          >
+            Login
+          </button>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <select
+          class="nav-item dropdown mr-2"
+          style="height: 35px"
+          (change)="getCathegory($event)"
+        >
+          <option class="dropdown-item" value="" selected="selected">
+            Selecciona una categoría
+          </option>
+          <option
+            class="dropdown-item"
+            *ngFor="let cathegory of arrCathegories | keyvalue"
+            [value]="cathegory.value._id"
+          >
+            {{ cathegory.value.name }}
+          </option>
+        </select>
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Buscar"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+          <img src="../assets/img/busqueda.png" alt="magnifyer" />
+        </button>
+      </form>
+    </div>
+  </nav>
+</header>

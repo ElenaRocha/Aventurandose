@@ -1,19 +1,26 @@
-<h1>{{ trail?._doc.name }}</h1>
-<p>{{ trail?._doc.description }}</p>
-<ul>
-  <li>Duración: {{ trail?._doc.time }}h</li>
-  <li>Kilómetros: {{ trail?._doc.length }}km</li>
-  <li>Desnivel: {{ trail?._doc.slope }}m</li>
-  <li>Circular: {{ trail?._doc.circular === true ? "sí" : "no" }}</li>
-  <li>Comunidad Autónoma: {{ trail?._doc.province }}</li>
-  <li>Cómo llegar: {{ trail?._doc.transport }}</li>
-  <li>
-    Etiquetas: <span *ngFor="let tag of trail?._doc.tags">{{ tag.name }}</span>
-  </li>
-</ul>
-<a class="m-4" [routerLink]="['rutas/comentar/', userId, trail?._doc._id]"
-  >Comentar</a
->
-<a class="m-4" [routerLink]="['rutas/formulario/', trail?._doc._id]"
-  >Actualizar ruta</a
->
+<app-header></app-header>
+<div class="container margin-top70 margin-bottom60">
+  <h1>{{ trail?._doc.name }}</h1>
+  <p>{{ trail?._doc.description }}</p>
+  <ul>
+    <li>Duración: {{ trail?._doc.time }}h</li>
+    <li>Kilómetros: {{ trail?._doc.length }}km</li>
+    <li>Desnivel: {{ trail?._doc.slope }}m</li>
+    <li>Circular: {{ trail?._doc.circular === true ? "sí" : "no" }}</li>
+    <li>Comunidad Autónoma: {{ trail?._doc.province }}</li>
+    <li>Cómo llegar: {{ trail?._doc.transport }}</li>
+    <li>
+      Etiquetas:
+      <span *ngFor="let tag of trail?._doc.tags">{{ tag.name }}</span>
+    </li>
+  </ul>
+  <a class="m-4" [routerLink]="['/rutas/comentar/', userId, trail?._doc._id]"
+    >Comentar</a
+  >
+  <a
+    class="m-4"
+    *ngIf="logado === 'admin'"
+    [routerLink]="['/rutas/formulario/', trail?._doc._id]"
+    >Actualizar ruta</a
+  >
+</div>

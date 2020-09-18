@@ -25,7 +25,10 @@ export class LoginFormComponent implements OnInit {
     localStorage.setItem('token', respuesta.token);
     localStorage.setItem('role', respuesta.role);
     localStorage.setItem('userId', respuesta.userId);
-
+    /*const token = localStorage.getItem('token');
+    if (!token) {
+      (document.querySelector('.alert') as HTMLElement).style.display = 'block';
+    }*/
     this.router.navigate(['/rutas/listado']);
   }
 }

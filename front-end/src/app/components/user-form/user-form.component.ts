@@ -40,7 +40,8 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {}
 
   getData(): void {
-    this.usersService.createUser(this.formulario.value);
+    const respuesta = this.usersService.createUser(this.formulario.value);
+    console.log('respuesta: ', respuesta);
     this.router.navigate(['/usuarios/login']);
   }
 }

@@ -23,8 +23,6 @@ export class UsersService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json; charset=UTF-8',
-        'x-access-token': localStorage.getItem('token'),
-        'x-role': localStorage.getItem('role'),
       }),
     };
     return this.httpClient.post(specificUrl, pUser, httpOptions).toPromise();

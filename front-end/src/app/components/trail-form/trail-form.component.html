@@ -1,4 +1,5 @@
-<div class="container m-4">
+<app-header></app-header>
+<div class="container margin-top70 margin-bottom60">
   <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
     <div class="form-group">
       <label>Nombre</label>
@@ -138,7 +139,41 @@
         El campo es obligatorio
       </p>
     </div>
-    <!--coordenadas-->
+    <div class="form-group">
+      <label>Coordenadas</label>
+      <input
+        type="text"
+        name="latitude"
+        class="form-control"
+        placeholder="Latitud"
+        formControlName="latitude"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.latitude.errors?.required &&
+          formulario.controls.latitude.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+      <input
+        type="text"
+        name="longitude"
+        class="form-control"
+        placeholder="Longitud"
+        formControlName="longitude"
+      />
+      <p
+        class="error"
+        *ngIf="
+          formulario.controls.longitude.errors?.required &&
+          formulario.controls.longitude.touched
+        "
+      >
+        El campo es obligatorio
+      </p>
+    </div>
     <div class="form-group">
       <label>Cómo llegar</label>
       <input

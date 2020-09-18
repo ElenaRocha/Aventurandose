@@ -21,6 +21,8 @@ export class TrailFormComponent implements OnInit {
       slope: new FormControl('', [Validators.required]),
       circular: new FormControl(''),
       province: new FormControl('', [Validators.required]),
+      latitude: new FormControl('', [Validators.required]),
+      longitude: new FormControl('', [Validators.required]),
       transport: new FormControl('', [Validators.required]),
     });
   }
@@ -37,6 +39,10 @@ export class TrailFormComponent implements OnInit {
   }
 
   getData(): void {
+    this.formulario.value.location = [
+      this.formulario.value.latitude,
+      this.formulario.value.longitude,
+    ];
     this.trailsService.registerTrail(this.formulario.value);
     this.router.navigate(['/rutas/listado']);
   }

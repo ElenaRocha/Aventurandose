@@ -18,6 +18,7 @@ import { UpdateUserFormComponent } from './components/update-user-form/update-us
 import { UpdateTrailFormComponent } from './components/update-trail-form/update-trail-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     UpdateTrailFormComponent,
     LoginFormComponent,
     CapitalizePipe,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

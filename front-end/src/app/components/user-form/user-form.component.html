@@ -1,7 +1,6 @@
-<div class="container m-4">
+<app-header></app-header>
+<div class="container margin-top70 margin-bottom60">
   <h2>Darse de alta</h2>
-  <a [routerLink]="['/usuarios/login']"><h3>Entrar</h3></a>
-  <!--<a [routerLink]="['usuraios/modifircar-perfil/', userId]"><h3>Modificar perfil</h3></a>-->
   <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
     <div class="form-group">
       <label>Nombre</label>
