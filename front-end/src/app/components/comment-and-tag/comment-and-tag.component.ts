@@ -14,6 +14,7 @@ export class CommentAndTagComponent implements OnInit {
   arrTags: Array<any>;
   user_id: any;
   trail_id: any;
+  trail_id2: any;
 
   constructor(
     private router: Router,
@@ -44,26 +45,21 @@ export class CommentAndTagComponent implements OnInit {
 
       this.trailsService.addComment(
         this.formulario.value,
-        this.user_id,
-        this.trail_id
+        this.trail_id,
+        this.user_id
       );
-
-      this.router.navigate(['/rutas/listado']);
+      (document.querySelector('.alert-comment') as HTMLElement).style.display =
+        'block';
     });
   }
 
-  //addTag
-  /*getCathegory($event) {
-    let selectedOptions = $event.target['options'];
-    let selectedIndex = selectedOptions.selectedIndex;
-    let selectElementText = selectedOptions[selectedIndex].text.toLowerCase();
+  getTag($event) {
+    this.activatedRoute.params.subscribe(async (params) => {
+      this.trail_id2 = params.trail_id;
 
-    this.router.navigate([
-      '/categorias',
-      selectElementText,
-      $event.target.value,
-    ]);
-
-    $event.target.value = '';
-  } */
+      this.trailsService.addTag(this.trail_id2, $event.target.value);
+      (document.querySelector('.alert-tag') as HTMLElement).style.display =
+        'block';
+    });
+  }
 }

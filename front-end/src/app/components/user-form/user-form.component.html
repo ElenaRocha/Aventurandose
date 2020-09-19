@@ -1,62 +1,64 @@
 <app-header></app-header>
-<div class="container margin-top70 margin-bottom60">
+<div class="container margin-top90 margin-bottom80">
   <h2>Darse de alta</h2>
   <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
-    <div class="form-group">
-      <label>Nombre</label>
-      <input
-        type="text"
-        name="name"
-        class="form-control"
-        placeholder="Escriba su nombre"
-        formControlName="name"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.name.errors?.required &&
-          formulario.controls.name.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.name.errors?.minlength &&
-          formulario.controls.name.touched
-        "
-      >
-        El campo debe tener al menos 3 caracteres
-      </p>
-    </div>
-    <div class="form-group">
-      <label>Apellidos</label>
-      <input
-        type="text"
-        name="surname"
-        class="form-control"
-        placeholder="Escriba sus apellidos"
-        formControlName="surname"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.surname.errors?.required &&
-          formulario.controls.surname.touched
-        "
-      >
-        El campo es obligatorio
-      </p>
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.surname.errors?.minlength &&
-          formulario.controls.surname.touched
-        "
-      >
-        El campo debe tener al menos 3 caracteres
-      </p>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nombre</label>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Escriba su nombre"
+          formControlName="name"
+        />
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.name.errors?.required &&
+            formulario.controls.name.touched
+          "
+        >
+          El campo es obligatorio
+        </p>
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.name.errors?.minlength &&
+            formulario.controls.name.touched
+          "
+        >
+          El campo debe tener al menos 3 caracteres
+        </p>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Apellidos</label>
+        <input
+          type="text"
+          name="surname"
+          class="form-control"
+          placeholder="Escriba sus apellidos"
+          formControlName="surname"
+        />
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.surname.errors?.required &&
+            formulario.controls.surname.touched
+          "
+        >
+          El campo es obligatorio
+        </p>
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.surname.errors?.minlength &&
+            formulario.controls.surname.touched
+          "
+        >
+          El campo debe tener al menos 3 caracteres
+        </p>
+      </div>
     </div>
     <div class="form-group">
       <label>Alias</label>

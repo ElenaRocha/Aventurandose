@@ -106,17 +106,21 @@ export class TrailsService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json; charset=UTF-8',
+        'x-access-token': localStorage.getItem('token'),
+        role: localStorage.getItem('role'),
       }),
     };
     return this.httpClient.post(specificUrl, httpOptions).toPromise();
   }
 
-  addComment(pTrial, pUser, pComment): Promise<any> {
+  addComment(pComment, pTrial, pUser): Promise<any> {
     const specificUrl = this.baseUrl + '/comentar/' + pTrial + '/' + pUser;
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json; charset=UTF-8',
+        'x-access-token': localStorage.getItem('token'),
+        role: localStorage.getItem('role'),
       }),
     };
     return this.httpClient.post(specificUrl, pComment, httpOptions).toPromise();

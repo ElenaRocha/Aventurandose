@@ -30,6 +30,7 @@
             class="nav-link"
             [routerLink]="['/usuarios/registrate']"
             routerLinkActive="activo"
+            *ngIf="!logado"
             >Regístrate</a
           >
         </li>

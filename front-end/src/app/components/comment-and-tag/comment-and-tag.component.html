@@ -1,49 +1,94 @@
-<div class="container m-4">
-  <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
-    <div class="form-group">
-      <label>Título</label>
+<app-header></app-header>
+<div class="container margin-top90">
+  <div class="container">
+    <h3>Comentario</h3>
+    <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
+      <div class="form-group">
+        <label>Título</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          placeholder="Título"
+          formControlName="title"
+        />
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.title.errors?.required &&
+            formulario.controls.title.touched
+          "
+        >
+          El campo es obligatorio
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Contenido</label>
+        <input
+          type="text"
+          name="content"
+          class="form-control"
+          placeholder="Contenido del comentario"
+          formControlName="content"
+        />
+        <p
+          class="error"
+          *ngIf="
+            formulario.controls.content.errors?.required &&
+            formulario.controls.content.touched
+          "
+        >
+          El campo es obligatorio
+        </p>
+      </div>
       <input
-        type="text"
-        name="title"
-        class="form-control"
-        placeholder="Título"
-        formControlName="title"
+        [disabled]="!formulario.valid"
+        type="submit"
+        class="btn btn-warning m-4"
+        value="Enviar"
       />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.title.errors?.required &&
-          formulario.controls.title.touched
-        "
+    </form>
+    <div
+      class="alert alert-warning alert-dismissible fade show alert-comment"
+      style="display: none"
+      role="alert"
+    >
+      Comentario publicado
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
       >
-        El campo es obligatorio
-      </p>
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="form-group">
-      <label>Contenido</label>
-      <input
-        type="text"
-        name="content"
-        class="form-control"
-        placeholder="Contenido del comentario"
-        formControlName="content"
-      />
-      <p
-        class="error"
-        *ngIf="
-          formulario.controls.content.errors?.required &&
-          formulario.controls.content.touched
-        "
+  </div>
+  <div class="container margin-bottom60">
+    <h3>Etiquetas</h3>
+    <button
+      type="button"
+      class="btn btn-light btn-sm m-2"
+      *ngFor="let tag of arrTags | keyvalue"
+      [value]="tag.value._id"
+      (click)="getTag($event)"
+    >
+      {{ tag.value.name }}
+    </button>
+    <div
+      class="alert alert-warning alert-dismissible fade show alert-tag"
+      style="display: none"
+      role="alert"
+    >
+      Etiqueta añadida
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
       >
-        El campo es obligatorio
-      </p>
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <input
-      [disabled]="!formulario.valid"
-      type="submit"
-      class="btn btn-warning m-4"
-      value="Enviar"
-    />
-  </form>
-  <!--etiquetas <span class="badge" *ngFor>-->
+  </div>
 </div>

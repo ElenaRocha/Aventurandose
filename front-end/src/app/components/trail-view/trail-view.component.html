@@ -1,26 +1,85 @@
 <app-header></app-header>
-<div class="container margin-top70 margin-bottom60">
-  <h1>{{ trail?._doc.name }}</h1>
-  <p>{{ trail?._doc.description }}</p>
-  <ul>
-    <li>Duración: {{ trail?._doc.time }}h</li>
-    <li>Kilómetros: {{ trail?._doc.length }}km</li>
-    <li>Desnivel: {{ trail?._doc.slope }}m</li>
-    <li>Circular: {{ trail?._doc.circular === true ? "sí" : "no" }}</li>
-    <li>Comunidad Autónoma: {{ trail?._doc.province }}</li>
-    <li>Cómo llegar: {{ trail?._doc.transport }}</li>
-    <li>
-      Etiquetas:
-      <span *ngFor="let tag of trail?._doc.tags">{{ tag.name }}</span>
-    </li>
-  </ul>
-  <a class="m-4" [routerLink]="['/rutas/comentar/', userId, trail?._doc._id]"
-    >Comentar</a
-  >
-  <a
-    class="m-4"
-    *ngIf="logado === 'admin'"
-    [routerLink]="['/rutas/formulario/', trail?._doc._id]"
-    >Actualizar ruta</a
-  >
+<div class="container margin-top90 margin-bottom80">
+  <div class="row">
+    <div class="my-3 col-12 col-md-4 col-lg-3">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="../../../assets/img/generic-trail.jpg"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ trail?._doc.name }}</h5>
+          <p class="card-text">
+            {{ trail?._doc.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="my-3 col-12 col-md-4 col-lg-3">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Duración: {{ trail?._doc.time }}h</li>
+            <li class="list-group-item">
+              Kilómetros: {{ trail?._doc.length }}km
+            </li>
+            <li class="list-group-item">Desnivel: {{ trail?._doc.slope }}m</li>
+            <li class="list-group-item">
+              Circular: {{ trail?._doc.circular === true ? "sí" : "no" }}
+            </li>
+            <li class="list-group-item">
+              Comunidad Autónoma: {{ trail?._doc.province }}
+            </li>
+            <li class="list-group-item">
+              Localidad: {{ trail?.weather.name }}
+            </li>
+            <li class="list-group-item">
+              Cómo llegar: {{ trail?._doc.transport }}
+            </li>
+            <li class="list-group-item">
+              Etiquetas:
+              <span *ngFor="let tag of trail?._doc.tags">{{ tag.name }}</span>
+            </li>
+          </ul>
+          <div class="card-body">
+            <a
+              class="card-link"
+              [routerLink]="['/rutas/comentar/', userId, trail?._doc._id]"
+              >Comentar</a
+            >
+            <a
+              class="card-link"
+              *ngIf="logado === 'admin'"
+              [routerLink]="['/rutas/formulario/', trail?._doc._id]"
+              >Actualizar ruta</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--comentarios-->
+  <div class="row">
+    <div class="my-3 col-12 col-md-4 col-lg-3">
+      <div class="card card2">
+        <!--<img  class="card-img-top" src="http://openweathermap.org/img/wn/{{trail?.weather.[0].icon }}@4x.png" alt="{{ trail?.weather.[0].description }}"/>-->
+        <div class="card-body">
+          <h5 class="card-title">El tiempo ahora</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Sensación térmica: {{ trail?.weather.main.feels_like }}&#176;
+            </li>
+            <li class="list-group-item">
+              Max: {{ trail?.weather.main.temp_max }}&#176; - Min:
+              {{ trail?.weather.main.temp_min }}&#176;
+            </li>
+            <li class="list-group-item">
+              Humedad: {{ trail?.weather.main.humidity }}&#37;
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

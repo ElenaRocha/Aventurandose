@@ -32,6 +32,7 @@ export class TrailViewComponent implements OnInit {
         .getTrailById(pId)
         .then((result) => {
           this.trail = result;
+          console.log('ficha ruta: ', result);
         })
         .catch((err) => {
           console.log(err);

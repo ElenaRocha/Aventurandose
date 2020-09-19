@@ -110,7 +110,7 @@ const trailController = {
   registerTrail: function (req, res) {
     const role = req.headers["x-role"];
     if (role !== "admin") {
-      res.status(401).json({
+      res.status(200).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
@@ -142,7 +142,7 @@ const trailController = {
   updateTrail: async function (req, res) {
     const role = req.headers["x-role"];
     if (role !== "admin") {
-      res.status(401).json({
+      res.status(200).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
@@ -179,7 +179,7 @@ const trailController = {
   deleteTrail: async function (req, res) {
     const role = req.headers["x-role"];
     if (role !== "admin") {
-      res.status(401).json({
+      res.status(200).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;
@@ -199,7 +199,7 @@ const trailController = {
   addCathegory: async function (req, res) {
     const role = req.headers["x-role"];
     if (role !== "admin") {
-      res.status(401).json({
+      res.status(200).json({
         message: "No tiene permiso para realizar esta acción",
       });
       return;

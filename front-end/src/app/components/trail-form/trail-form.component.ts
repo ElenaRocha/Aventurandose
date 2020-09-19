@@ -39,11 +39,21 @@ export class TrailFormComponent implements OnInit {
   }
 
   getData(): void {
-    this.formulario.value.location = [
-      this.formulario.value.latitude,
-      this.formulario.value.longitude,
-    ];
-    this.trailsService.registerTrail(this.formulario.value);
+    const modifiedForm = {
+      name: this.formulario.value.name,
+      descriptiontime: this.formulario.value.description,
+      length: this.formulario.value.length,
+      slope: this.formulario.value.slope,
+      circular: this.formulario.value.circular,
+      province: this.formulario.value.province,
+      location: [
+        this.formulario.value.latitude,
+        this.formulario.value.longitude,
+      ],
+      transport: this.formulario.value.transport,
+    };
+
+    this.trailsService.registerTrail(modifiedForm);
     this.router.navigate(['/rutas/listado']);
   }
 }

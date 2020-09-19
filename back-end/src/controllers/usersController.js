@@ -119,7 +119,7 @@ const usersController = {
     const userData = await User.findOne({ email: userInfo.email });
 
     if (!userData) {
-      res.status(401).json({
+      res.status(200).json({
         message: "Usuario o contraseña incorrectos",
       });
       return;
@@ -131,7 +131,7 @@ const usersController = {
     );
 
     if (!passwordIsCorrect) {
-      res.status(401).json({
+      res.status(200).json({
         message: "Usuario o contraseña incorrectos",
       });
       return;

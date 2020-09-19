@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
 
     //jwt
     if (!token) {
-      this.router.navigate(['usuarios/registrate']);
+      //alert
       return false;
     }
 

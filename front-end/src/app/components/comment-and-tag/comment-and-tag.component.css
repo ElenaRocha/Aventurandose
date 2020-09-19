@@ -12,6 +12,6 @@ select.ng-valid.ng-touched {
   color: red;
 }
 
-.btn {
+form .btn {
   background-color: #e27311;
 }
