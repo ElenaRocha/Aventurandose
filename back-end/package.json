@@ -4,7 +4,7 @@
   "description": "proyecto final de bootcamp full stack developer 2020, parte back-end",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "Elena Rocha",
   "license": "ISC",
