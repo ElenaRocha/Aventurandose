@@ -28,8 +28,6 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Something broke!");
 });
 
-app.get("/", (req, res) => res.send("Welcome"));
-
-app.listen(process.env.PORT || 3000, () =>
+app.listen(process.env.PORT, () =>
   console.log("Running on port ", process.env.PORT)
 );
