@@ -11,7 +11,7 @@ const secret = process.env.SECRET;
 
 mongoose
   .connect(
-    `mongodb+srv://elerv:${process.env.DDBBPASS}@proyectofinal.9bm89.mongodb.net/senderismo?retryWrites=true&w=majority`,
+    `mongodb+srv://elerv:n00lv1d4r@proyectofinal.9bm89.mongodb.net/senderismo?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
