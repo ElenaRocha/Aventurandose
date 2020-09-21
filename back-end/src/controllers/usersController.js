@@ -10,11 +10,14 @@ mongoose.set("useFindAndModify", false);
 const secret = process.env.SECRET;
 
 mongoose
-  .connect(process.env.DDBB_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .catch((error) => handleError(error));
+  .connect(
+    `mongodb+srv://elerv:${process.env.DDBBPASS}@proyectofinal.9bm89.mongodb.net/senderismo?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .catch((error) => console.log(error));
 
 mongoose.connection.on("error", (err) => {
   console.log("Database error: ", err);

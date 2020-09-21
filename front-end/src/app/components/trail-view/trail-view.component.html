@@ -103,13 +103,13 @@
         <a
           class="m-2"
           [routerLink]="['/rutas/comentar/', userId, trail?._doc._id]"
+          (onclick)="show()"
           >Comentar</a
         >
         <div
           class="alert alert-warning alert-dismissible fade show"
           role="alert"
           *ngIf="display"
-          (onclick)="show()"
         >
           Debe estar registrado para añadir un comentario
           <button

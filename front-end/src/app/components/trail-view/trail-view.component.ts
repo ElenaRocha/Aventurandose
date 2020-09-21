@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TrailsService } from 'src/app/services/trails.service';
 
@@ -17,7 +18,8 @@ export class TrailViewComponent implements OnInit {
 
   constructor(
     private trailsService: TrailsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.userId = localStorage.getItem('userId');
     this.display = false;
@@ -43,5 +45,8 @@ export class TrailViewComponent implements OnInit {
 
   show() {
     this.display = true;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
   }
 }
