@@ -40,10 +40,10 @@ export class UpdateTrailFormComponent implements OnInit {
 
   getData(): void {
     //this.trailsService.updateTrail(this.formulario.value);
-    this.router.navigate(['/rutas/listado']);
+    //this.router.navigate(['/rutas/listado']);
   }
 
-  chooseCathegory() {}
+  chooseCathegory($event) {}
 
   //deleteTrail
 }

@@ -57,7 +57,7 @@
             *ngIf="logado"
             (click)="logout()"
           >
-            Logout
+            Salir
           </button>
           <button
             class="nav-item btn btn-outline-success my-2 my-sm-0"
@@ -65,13 +65,13 @@
             *ngIf="!logado"
             [routerLink]="['/usuarios/login']"
           >
-            Login
+            Entrar
           </button>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <div class="form-inline my-2 my-lg-0">
         <select
-          class="nav-item dropdown mr-2"
+          class="form-control dropdown mr-2"
           style="height: 35px"
           (change)="getCathegory($event)"
         >
@@ -86,16 +86,20 @@
             {{ cathegory.value.name }}
           </option>
         </select>
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Buscar"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
-          <img src="../assets/img/busqueda.png" alt="magnifyer" />
-        </button>
-      </form>
+        <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            name="search"
+            formControlName="search"
+            placeholder="Buscar etiqueta"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+            <img src="../assets/img/busqueda.png" alt="magnifyer" />
+          </button>
+        </form>
+      </div>
     </div>
   </nav>
 </header>

@@ -41,7 +41,6 @@ export class UserFormComponent implements OnInit {
 
   getData(): void {
     const respuesta = this.usersService.createUser(this.formulario.value);
-    console.log('respuesta: ', respuesta);
     this.router.navigate(['/usuarios/login']);
   }
 }

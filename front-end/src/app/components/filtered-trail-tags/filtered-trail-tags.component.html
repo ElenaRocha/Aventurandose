@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container margin-top90 margin-bottom80">
+  <h3>{{ tname | capitalize }}</h3>
+  <div class="row">
+    <div class="my-3 col-12 col-md-4 col-lg-3" *ngFor="let trail of arrTrails">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="../../../assets/img/generic-trail.jpg"
+          alt="trail-photo"
+        />
+        <div class="card-body">
+          <a [routerLink]="['/rutas/ruta/', trail?._id]"
+            ><h5 class="card-title">{{ trail?.name }}</h5></a
+          >
+          <p class="card-text">{{ trail?.description.slice(0, 149) }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

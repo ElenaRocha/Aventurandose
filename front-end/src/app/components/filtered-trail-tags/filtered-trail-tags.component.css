@@ -1,0 +1,11 @@
+h3 {
+  font-family: judson-bold;
+  color: #49632c;
+}
+h5 {
+  font-family: judson-regular;
+  color: #e27311;
+}
+.card-text {
+  font-family: judson-italic;
+}

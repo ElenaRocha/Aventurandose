@@ -1,3 +1,28 @@
+.card-group h4 {
+  font-family: judson-bold;
+  color: #49632c;
+}
+
+.card2 h6 {
+  font-family: judson-bold;
+}
+
+.card-group .card-text {
+  font-family: judson-regular;
+}
+
+.card-group .card a {
+  font-family: judson-regular;
+}
+
+.card-group .list-group {
+  font-family: judson-regular;
+}
+
+.card2 .list-group {
+  font-family: judson-regular;
+}
+
 .card2 {
   position: relative;
   display: flex;
@@ -8,4 +33,36 @@
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125) !important;
   border-radius: 0.25rem;
+  font-size: 15px;
+}
+
+.card2 img {
+  height: 150px;
+  width: 150px;
+}
+
+.card-group .list-group-item {
+  background-color: transparent !important;
+}
+
+.widget .panel-body {
+  padding: 0px;
+}
+.widget .list-group {
+  margin-bottom: 0;
+}
+.widget .panel-title {
+  display: inline;
+}
+.widget li.list-group-item {
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+.widget .mic-info {
+  color: #666666;
+  font-size: 11px;
+}
+.widget .comment-text {
+  font-size: 12px;
 }

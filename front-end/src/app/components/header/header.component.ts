@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TrailsService } from '../../services/trails.service';
 
 @Component({
@@ -9,10 +10,15 @@ import { TrailsService } from '../../services/trails.service';
 })
 export class HeaderComponent implements OnInit {
   arrCathegories: Array<any>;
+  formulario: FormGroup;
   logado: any;
   userId: any;
 
-  constructor(private trailsService: TrailsService, private router: Router) {}
+  constructor(private trailsService: TrailsService, private router: Router) {
+    this.formulario = new FormGroup({
+      search: new FormControl(''),
+    });
+  }
 
   ngOnInit() {
     this.logado = localStorage.getItem('role');
@@ -50,5 +56,8 @@ export class HeaderComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
+  }
+  getData() {
+    this.router.navigate(['/etiquetas', this.formulario.value.search]);
   }
 }

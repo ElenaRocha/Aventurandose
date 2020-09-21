@@ -9,6 +9,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { UpdateUserFormComponent } from './components/update-user-form/update-user-form.component';
 import { UpdateTrailFormComponent } from './components/update-trail-form/update-trail-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { FilteredTrailTagsComponent } from './components/filtered-trail-tags/filtered-trail-tags.component';
 import { LoginGuard } from './guards/login.guard';
 import { AdminGuard } from './guards/admin.guard';
 
@@ -19,7 +20,7 @@ const routes: Routes = [
     path: 'categorias/:cname/:cathegory',
     component: FilteredTrailsComponent,
   },
-  { path: 'etiquetas/:tag', component: FilteredTrailsComponent },
+  { path: 'etiquetas/:tag', component: FilteredTrailTagsComponent },
   { path: 'rutas/ruta/:id', component: TrailViewComponent },
   {
     path: 'rutas/formulario',

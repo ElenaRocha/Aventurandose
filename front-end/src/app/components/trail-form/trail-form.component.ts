@@ -41,7 +41,8 @@ export class TrailFormComponent implements OnInit {
   getData(): void {
     const modifiedForm = {
       name: this.formulario.value.name,
-      descriptiontime: this.formulario.value.description,
+      description: this.formulario.value.description,
+      time: this.formulario.value.time,
       length: this.formulario.value.length,
       slope: this.formulario.value.slope,
       circular: this.formulario.value.circular,

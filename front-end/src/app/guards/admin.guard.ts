@@ -24,7 +24,7 @@ export class AdminGuard implements CanActivate {
     }
 
     if (role !== 'admin') {
-      this.router.navigate(['/rutas/listado']);
+      //alert
       return false;
     }
 

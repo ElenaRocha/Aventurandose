@@ -8,14 +8,14 @@ const router = express.Router();
 
 function authenticate(req, res, next) {
   const token = req.headers["x-access-token"];
+
   if (!token) {
-    res.status(401).json({
+    res.status(200).json({
       message: "Debes incluir un token válido en tu petición",
     });
     return;
   }
   const decodedToken = jwt.verify(token, secret);
-  req.email = decodedToken.email;
 
   next();
 }
@@ -37,11 +37,7 @@ router.post(
   authenticate,
   trailsController.addCathegory
 );
-router.post(
-  "/etiquetar/:trail_id/:tag_id",
-  authenticate,
-  trailsController.addTag
-);
+router.post("/etiquetar", authenticate, trailsController.addTag);
 router.post(
   "/comentar/:trail_id/:user_id",
   authenticate,

@@ -14,7 +14,6 @@ export class CommentAndTagComponent implements OnInit {
   arrTags: Array<any>;
   user_id: any;
   trail_id: any;
-  trail_id2: any;
 
   constructor(
     private router: Router,
@@ -28,6 +27,10 @@ export class CommentAndTagComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(async (params) => {
+      this.user_id = params.user_id;
+      this.trail_id = params.trail_id;
+    });
     this.trailsService
       .getAllTags()
       .then((result) => {
@@ -50,14 +53,16 @@ export class CommentAndTagComponent implements OnInit {
       );
       (document.querySelector('.alert-comment') as HTMLElement).style.display =
         'block';
+      (document.querySelector('.form-control') as HTMLElement).innerHTML = '';
     });
   }
 
   getTag($event) {
     this.activatedRoute.params.subscribe(async (params) => {
-      this.trail_id2 = params.trail_id;
+      this.trail_id = params.trail_id;
 
-      this.trailsService.addTag(this.trail_id2, $event.target.value);
+      await this.trailsService.addTag(this.trail_id, $event.target.value);
+
       (document.querySelector('.alert-tag') as HTMLElement).style.display =
         'block';
     });

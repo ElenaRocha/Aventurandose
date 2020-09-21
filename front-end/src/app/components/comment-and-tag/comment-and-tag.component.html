@@ -1,5 +1,15 @@
 <app-header></app-header>
 <div class="container margin-top90">
+  <div class="row">
+    <button
+      class="col-1 col-md-2 col-lg-2"
+      type="button"
+      class="close"
+      [routerLink]="['/rutas/ruta/', trail_id]"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <div class="container">
     <h3>Comentario</h3>
     <form novalidate [formGroup]="formulario" (ngSubmit)="getData()">
@@ -64,7 +74,7 @@
       </button>
     </div>
   </div>
-  <div class="container margin-bottom60">
+  <div class="container margin-bottom80">
     <h3>Etiquetas</h3>
     <button
       type="button"

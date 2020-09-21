@@ -9,13 +9,12 @@ const router = express.Router();
 function authenticate(req, res, next) {
   const token = req.headers["x-access-token"];
   if (!token) {
-    res.status(401).json({
+    res.status(200).json({
       message: "Debes incluir un token válido en tu petición",
     });
     return;
   }
   const decodedToken = jwt.verify(token, secret);
-  req.email = decodedToken.email;
 
   next();
 }

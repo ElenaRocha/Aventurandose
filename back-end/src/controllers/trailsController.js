@@ -235,8 +235,8 @@ const trailController = {
   },
 
   addTag: async function (req, res) {
-    const trailId = req.params.trail_id;
-    const tagId = req.params.tag_id;
+    const trailId = req.body.trail;
+    const tagId = req.body.tag;
 
     Trail.findByIdAndUpdate(
       trailId,

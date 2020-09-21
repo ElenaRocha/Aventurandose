@@ -23,10 +23,8 @@ export class LoginFormComponent implements OnInit {
 
   async getData() {
     const respuesta = await this.usersService.userLogin(this.formulario.value);
-    console.log('el tipo: ', typeof respuesta.message);
-    console.log('string: ', respuesta.message);
-    const mensaje = respuesta.message;
-    if (mensaje !== 'Usuario o contraseña incorrectos') {
+    this.mensaje = respuesta.message;
+    if (this.mensaje !== 'Usuario o contraseña incorrectos') {
       localStorage.setItem('token', respuesta.token);
       localStorage.setItem('role', respuesta.role);
       localStorage.setItem('userId', respuesta.userId);

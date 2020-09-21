@@ -13,12 +13,14 @@ export class TrailViewComponent implements OnInit {
   userId: any;
   logado: any;
   uId: any;
+  display: any;
 
   constructor(
     private trailsService: TrailsService,
     private activatedRoute: ActivatedRoute
   ) {
     this.userId = localStorage.getItem('userId');
+    this.display = false;
   }
 
   ngOnInit() {
@@ -32,11 +34,14 @@ export class TrailViewComponent implements OnInit {
         .getTrailById(pId)
         .then((result) => {
           this.trail = result;
-          console.log('ficha ruta: ', result);
         })
         .catch((err) => {
           console.log(err);
         });
     });
+  }
+
+  show() {
+    this.display = true;
   }
 }

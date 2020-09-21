@@ -19,6 +19,7 @@ import { UpdateTrailFormComponent } from './components/update-trail-form/update-
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { HeaderComponent } from './components/header/header.component';
+import { FilteredTrailTagsComponent } from './components/filtered-trail-tags/filtered-trail-tags.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HeaderComponent } from './components/header/header.component';
     LoginFormComponent,
     CapitalizePipe,
     HeaderComponent,
+    FilteredTrailTagsComponent,
   ],
   imports: [
     BrowserModule,

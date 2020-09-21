@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TrailsService {
   baseUrl: string;
+  globalHttpOptions: any;
 
   constructor(private httpClient: HttpClient) {
     this.baseUrl = 'http://localhost:3000/rutas';
@@ -92,25 +93,24 @@ export class TrailsService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-type': 'application/json; charset=UTF-8',
         'x-access-token': localStorage.getItem('token'),
-        role: localStorage.getItem('role'),
+        'x-role': localStorage.getItem('role'),
       }),
     };
     return this.httpClient.post(specificUrl, httpOptions).toPromise();
   }
 
   addTag(pTrail, pTag): Promise<any> {
-    const specificUrl = this.baseUrl + '/etiquetar/' + pTrail + '/' + pTag;
+    const specificUrl = this.baseUrl + '/etiquetar';
+    const tag = { trail: pTrail, tag: pTag };
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-type': 'application/json; charset=UTF-8',
         'x-access-token': localStorage.getItem('token'),
-        role: localStorage.getItem('role'),
+        'x-role': localStorage.getItem('role'),
       }),
     };
-    return this.httpClient.post(specificUrl, httpOptions).toPromise();
+    return this.httpClient.post(specificUrl, tag, httpOptions).toPromise();
   }
 
   addComment(pComment, pTrial, pUser): Promise<any> {
@@ -120,7 +120,7 @@ export class TrailsService {
       headers: new HttpHeaders({
         'Content-type': 'application/json; charset=UTF-8',
         'x-access-token': localStorage.getItem('token'),
-        role: localStorage.getItem('role'),
+        'x-role': localStorage.getItem('role'),
       }),
     };
     return this.httpClient.post(specificUrl, pComment, httpOptions).toPromise();
