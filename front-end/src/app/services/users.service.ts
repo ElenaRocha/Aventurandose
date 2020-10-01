@@ -8,7 +8,7 @@ export class UsersService {
   baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'https://senderismo.herokuapp.com/usuarios';
+    this.baseUrl = 'http://localhost:3000/usuarios';
   }
 
   getWeather(lat, lon): Promise<any> {

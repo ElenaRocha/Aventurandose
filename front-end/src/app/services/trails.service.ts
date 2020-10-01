@@ -9,7 +9,7 @@ export class TrailsService {
   globalHttpOptions: any;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = 'https://senderismo.herokuapp.com/rutas';
+    this.baseUrl = 'http://localhost:3000/rutas';
   }
 
   getAllTrails(): Promise<any[]> {

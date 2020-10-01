@@ -53,7 +53,6 @@ export class CommentAndTagComponent implements OnInit {
       );
       (document.querySelector('.alert-comment') as HTMLElement).style.display =
         'block';
-      //(document.querySelector('.form-control') as HTMLElement).innerHTML = '';
       this.formulario.reset({});
     });
   }
